@@ -1,9 +1,10 @@
 import pygame
 import menu
-
+from pygame.locals import *
+import os
 
 pygame.init()
-screen = pygame.display.set_mode((1600,1000))
+screen = pygame.display.set_mode((1600,1000), HWSURFACE | DOUBLEBUF | FULLSCREEN)
 
 icon = pygame.image.load("icon_game.png")
 global launched
@@ -14,14 +15,18 @@ menu_launch = True
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Planet Star")
 
-menu_background = pygame.image.load("menu.png")
+
+
 image = pygame.image.load("tets.jpg")
 earth = pygame.image.load("earth.png")
 jupiter = pygame.image.load("jupiter.png")
 mars = pygame.image.load("mars.png")
 sprite = pygame.image.load("spriteplanete.png")
 
-launched = menu.display_menu(screen, menu_launch)
+
+list = menu.display_menu(screen, menu_launch)
+if (len(list) == 4):
+    launched = True
 
 while launched:
     pygame.display.init()
