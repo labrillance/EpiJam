@@ -2,6 +2,8 @@ import pygame
 import menu
 from pygame.locals import *
 import os
+import widget
+
 
 pygame.init()
 screen = pygame.display.set_mode((1600,1000), HWSURFACE | DOUBLEBUF | FULLSCREEN)
@@ -27,6 +29,9 @@ sprite = pygame.image.load("spriteplanete.png")
 list = menu.display_menu(screen, menu_launch)
 if (len(list) == 4):
     launched = True
+incone_or = pygame.image.load("incone_or.jpg")
+incone_or.convert()
+launched = menu.display_menu(screen, menu_launch)
 
 while launched:
     pygame.display.init()
@@ -35,7 +40,12 @@ while launched:
     screen.blit(jupiter, (120,30))
     screen.blit(mars, (250,65))
     screen.blit(sprite, (400,10))
+    widget.print_incone(screen, incone_or)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             launched = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if pygame.mouse.get_pos()[0] >= 1500 and pygame.mouse.get_pos()[1] >= 900 \
+            and pygame.mouse.get_pos()[0] <= 1600 and pygame.mouse.get_pos()[1] <= 1000:
+                widget.widget(screen, image, incone_or)
     pygame.display.flip()
