@@ -39,5 +39,5 @@ while launched:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if pygame.mouse.get_pos()[0] >= 1500 and pygame.mouse.get_pos()[1] >= 900 \
             and pygame.mouse.get_pos()[0] <= 1600 and pygame.mouse.get_pos()[1] <= 1000:
-                widget.widget();
+                widget.widget(screen, image, incone_or);
     pygame.display.flip()
