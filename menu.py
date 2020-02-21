@@ -33,14 +33,14 @@ class TextBox(pygame.sprite.Sprite):
 textBox = TextBox()
 shiftDown = False
 textBox.rect.center = [300, 700]
-play_button = pygame.image.load("button_play.png")
+play_button = pygame.image.load("textures/button_play.png")
 font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", 30)
 p1, p2, p3, p4 = "Player 1", "Player 2", "Player 3", "Player 4"
 p1, p2, p3, p4 = font.render(p1, True, (255,255,255)), font.render(p2, True, (255,255,255)), font.render(p3, True, (255,255,255)), font.render(p4, True, (255,255,255))
 
 def display_menu(screen, menu_launch):
     scrrec = screen.get_rect()
-    menu_background_or = pygame.image.load("menu.png").convert()
+    menu_background_or = pygame.image.load("textures/menu.png").convert()
     menu_background = menu_background_or
     menu_background = pygame.transform.scale(menu_background, (scrrec.right, scrrec.bottom))
     nb_players = 0
