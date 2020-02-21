@@ -26,7 +26,6 @@ mars = pygame.image.load("textures/mars.png")
 sprite = pygame.image.load("textures/spriteplanete.png")
 incone_or = pygame.image.load("textures/incone_or.jpg")
 incone_or.convert()
-launched = menu.display_menu(screen, menu_launch)
 
 list = menu.display_menu(screen, menu_launch)
 if (len(list) == 4):
