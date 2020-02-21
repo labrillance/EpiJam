@@ -1,6 +1,6 @@
 import pygame
 pygame.init()
-screen = pygame.display.set_mode((1600,1000))
+screen = pygame.display.set_mode((1200,750))
 
 launched = True
 image = pygame.image.load("tets.jpg")
