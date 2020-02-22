@@ -3,6 +3,7 @@ import menu
 from pygame.locals import *
 import os
 import widget
+import planete
 import init.init as classes
 
 pygame.init()
