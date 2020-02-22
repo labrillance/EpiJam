@@ -1,4 +1,6 @@
-class planete:
-    def __init__(self, nam, i):
-        self.name = nam
-        self.id = i
+class player:
+    def __init__(self):
+        self.name = ""
+        self.gold = 0
+        self.oil = 0
+        self.iron = 0
