@@ -37,7 +37,7 @@ textBox = TextBox()
 shiftDown = False
 textBox.rect.center = [infoObject.current_w * 500 / 1600, infoObject.current_h * 700 / 1000]
 play_button = pygame.image.load("textures/button_play.png")
-font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 30 / (1600 * 1000))))
+font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 23 / (1600 * 1000))))
 p1, p2, p3, p4 = "Player 1", "Player 2", "Player 3", "Player 4"
 p1, p2, p3, p4 = font.render(p1, True, (255,255,255)), font.render(p2, True, (255,255,255)), font.render(p3, True, (255,255,255)), font.render(p4, True, (255,255,255))
 
