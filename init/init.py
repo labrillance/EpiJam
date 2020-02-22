@@ -5,6 +5,7 @@ class player:
         self.gold = 0
         self.oil = 0
         self.iron = 0
+        self.bases = bases()
 
 class planete:
     def __init__(self):
@@ -17,3 +18,11 @@ class planete:
         self.long = 0
         self.larg = 0
         self.colonise = 0
+
+class bases:
+    def __init__(self):
+        self.prop = ""
+        self.image = 0
+        self.rect = 0
+        self.posx = 0
+        self.posy = 0
