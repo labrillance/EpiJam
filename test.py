@@ -73,7 +73,6 @@ while launched:
     pygame.display.init()
     screen.blit(image, (0,0))
     screen.blit(overlay[turn], (0, 0))
-    screen.blit(players[turn].name, (infoObject.current_w * 12 / 1600, infoObject.current_h * 871 / 1000))
     screen.blit(little1, (300, 300))
     screen.blit(middle1, (300, 600))
     screen.blit(big, (600, 300))
