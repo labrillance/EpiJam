@@ -4,9 +4,11 @@ from pygame.locals import *
 import os
 import widget
 
-
 pygame.init()
-screen = pygame.display.set_mode((1600,1000), HWSURFACE | DOUBLEBUF | FULLSCREEN)
+
+infoObject = pygame.display.Info()
+
+screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h), HWSURFACE | DOUBLEBUF | FULLSCREEN)
 
 icon = pygame.image.load("textures/icon_game.png")
 global launched
