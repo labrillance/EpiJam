@@ -9,39 +9,39 @@ import math
 
 pygame.init()
 
-infoObject = pygame.display.Info()
-
-screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h), HWSURFACE | DOUBLEBUF | FULLSCREEN)
-
+#---------------------------INITIALISATION WINDOW---------------------------------
+infoObject = pygame.display.Info()          #info fenêtre utilisateur
+screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h), 0) #création de la fenêtre principale
+#---------------------------LOAD SPRITE AND ICONE----------------------------------
 icon = pygame.image.load("textures/icon_game.png")
-
-planete.random_planete(1, 1, 1, 1, 1)
-
-
+image = pygame.image.load("textures/tets.jpg")
+earth = pygame.image.load("textures/earth.png")
+overlay = [pygame.image.load("textures/overlayplayer1.png"), pygame.image.load("textures/overlayplayer2.png"), pygame.image.load("textures/overlayplayer3.png"), pygame.image.load("textures/overlayplayer4.png")]
+popup = pygame.image.load("textures/popup.png")
+little1 = pygame.image.load("textures/little1.png")
+middle1 = pygame.image.load("textures/middle1.png")
+big = pygame.image.load("textures/big.png")
+#---------------------------FONT---------------------------------------------------
+font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
+#---------------------------init variable and GLOBAL-------------------------------------------------
 global launched
 launched = False
 global menu_launch
 menu_launch = True
+turn = 0
+print_inf = 0
 
+#---------------------------PYGAME.DISPLAY-----------------------------------------
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Planet Star")
-
-image = pygame.image.load("textures/tets.jpg")
+#---------------------------SCALE--------------------------------------------------
 image = pygame.transform.scale(image, (infoObject.current_w, infoObject.current_h))
-little1 = pygame.image.load("textures/little1.png")
-little1 = pygame.transform.scale(little1, (round(infoObject.current_w * 60 / 1920), round(infoObject.current_h * 60 / 1080)))
-middle1 = pygame.image.load("textures/middle1.png")
-middle1 = pygame.transform.scale(middle1, (round(infoObject.current_w * 190 / 1920), round(infoObject.current_h * 173 / 1080)))
-big = pygame.image.load("textures/big.png")
-big = pygame.transform.scale(big, (round(infoObject.current_w * 180 / 1980), round(infoObject.current_h * 180 / 1020)))
-overlay = [pygame.image.load("textures/overlayplayer1.png"), pygame.image.load("textures/overlayplayer2.png"), pygame.image.load("textures/overlayplayer3.png"), pygame.image.load("textures/overlayplayer4.png")]
+earth = pygame.transform.scale(earth, (infoObject.current_w, infoObject.current_h))
 overlay = [pygame.transform.scale(overlay[0], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[1], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[2], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[3], (infoObject.current_w, infoObject.current_h))]
-font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
-popup = pygame.image.load("textures/popup.png")
-list = menu.display_menu(screen, menu_launch)
-if (len(list) == 4):
-    launched = True
-
+little1 = pygame.transform.scale(little1, (round(infoObject.current_w * 60 / 1920), round(infoObject.current_h * 60 / 1080)))
+middle1 = pygame.transform.scale(middle1, (round(infoObject.current_w * 190 / 1920), round(infoObject.current_h * 173 / 1080)))
+big = pygame.transform.scale(big, (round(infoObject.current_w * 180 / 1980), round(infoObject.current_h * 180 / 1020)))
+#---------------------------Function-----------------------------------------------
 def init_players(list):
     i = 0
     players = []
@@ -56,10 +56,14 @@ def init_players(list):
         players[i].bases.posx = infoObject.current_w * x[i] / 1600
         players[i].bases.posy = infoObject.current_h * y[i] / 1000
         players[i].bases.image = pygame.image.load("textures/earth.png")
-        players[i].bases.image = pygame.transform.scale(players[i].bases.image, (round(infoObject.current_w * 90 / 1920), round(infoObject.current_h * 90 / 1020)))
         i += 1
     return players
-turn = 0
+#---------------------------/function---------------------------------------------
+planete.random_planete(1, 1, 1, 1, 1)
+list = menu.display_menu(screen, menu_launch)
+if (len(list) == 4):
+    launched = True
+
 players = init_players(list)
 clock_turn = pygame.time.get_ticks()
 seconds = ""
