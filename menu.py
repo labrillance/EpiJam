@@ -63,7 +63,7 @@ def display_menu(screen, menu_launch):
         screen.blit(pl4, (infoObject.current_w * 1350 / 1600, infoObject.current_h  * 410 / 1000))
         play_rect = pygame.Rect(1175, 792, 1175 + 225, 792 + 75)
         if (nb_players >= 4):
-            screen.blit(play_button, ((infoObject.current_w * 1175 / 1600, infoObject.current_h  * 225 / 1000)))
+            screen.blit(play_button, ((infoObject.current_w * 1175 / 1600, infoObject.current_h  * 792 / 1000)))
         x, y = pygame.mouse.get_pos()
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
