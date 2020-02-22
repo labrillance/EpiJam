@@ -3,6 +3,7 @@ import menu
 from pygame.locals import *
 import os
 import widget
+import init.init as classes
 
 pygame.init()
 
@@ -34,6 +35,18 @@ incone_or.convert()
 list = menu.display_menu(screen, menu_launch)
 if (len(list) == 4):
     launched = True
+
+def init_players(list):
+    i = 0
+    players = []
+    while i <= 3:
+        players.append(classes.player())
+        players[i].name = list[i]
+        i += 1
+    return players
+
+turn = 0
+players = init_players(list)
 
 while launched:
     pygame.display.init()
