@@ -3,14 +3,8 @@ from pygame import *
 import init.init as classes
 from random import randrange
 
-def random_planete(taille, posx, posy, long, larg):
-    names_planetes = ["Gisiuhiri", "Mudrehiri", "Lodoth", "Namides", "Cetania", "Cezuno", "Treaclite", "Sailia", "Bromia ALO", "Nion 7FJ", "Team JUL", "R2D2", "Tibz", "Smash", "Coca", "Iris"]
-    nombreAleatoire = randrange(0,16)
-    print("nombre %d" % nombreAleatoire)
-    name = names_planetes[nombreAleatoire]
-
+def random_planete(taille, posx, posy, long, larg, name):
     classes.planete.name = name
-    print(classes.planete.name)
     classes.planete.x = posx
     classes.planete.y = posy
     classes.planete.long = long
