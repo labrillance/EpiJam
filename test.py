@@ -3,7 +3,10 @@ import menu
 from pygame.locals import *
 import os
 import widget
+<<<<<<< HEAD
 """import planete"""
+=======
+>>>>>>> 4d8d86460087b7c41db910e95205f79c30b35888
 import init.init as classes
 import math
 
@@ -68,10 +71,13 @@ def click_on_base():
                 disp_base_info = True
     return disp_base_info
 
-while launched:
+while launched:    
     pygame.display.init()
     screen.blit(image, (0,0))
     screen.blit(overlay[turn], (0, 0))
+    screen.blit(players[turn].name, (infoObject.current_w * 12 / 1600, infoObject.current_h * 871 / 1000))
+    if (print_inf % 2 != 0):
+        widget.print_info(screen, infoObject, rect)
     screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))
     sec = int(seconds)
@@ -92,6 +98,12 @@ while launched:
                 turn += 1
             else:
                 turn = 0
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if (print_inf % 2 == 0 and infoObject.current_w * 1400 / 1600, infoObject.current_h  * 600 / 1000, infoObject.current_w * 200 / 1600, infoObject.current_h  * 400 / 1000):
+                print_inf += 1
+                rect = (infoObject.current_w * 1400 / 1600, infoObject.current_h  * 800 / 1000, infoObject.current_w * 200 / 1600, infoObject.current_h  * 200 / 1000)
+            elif (print_inf % 2 != 0 and infoObject.current_w * 1400 / 1600, infoObject.current_h  * 600 / 1000, infoObject.current_w * 200 / 1600, infoObject.current_h  * 400 / 1000):
+                print_inf = 0
     if sec <= 0:
         clock_turn = pygame.time.get_ticks()
         if turn != 3:
