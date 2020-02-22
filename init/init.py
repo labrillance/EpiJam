@@ -26,3 +26,9 @@ class bases:
         self.rect = 0
         self.posx = 0
         self.posy = 0
+
+class fusee:
+    def __init__(self):
+        self.status
+        self.vitesse
+        self.power
