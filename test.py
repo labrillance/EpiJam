@@ -21,16 +21,13 @@ menu_launch = True
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Planet Star")
 
-
-
 image = pygame.image.load("textures/tets.jpg")
 image = pygame.transform.scale(image, (infoObject.current_w, infoObject.current_h))
 earth = pygame.image.load("textures/earth.png")
+earth = pygame.transform.scale(earth, (infoObject.current_w, infoObject.current_h))
 jupiter = pygame.image.load("textures/jupiter.png")
 mars = pygame.image.load("textures/mars.png")
 sprite = pygame.image.load("textures/spriteplanete.png")
-incone_or = pygame.image.load("textures/incone_or.jpg")
-incone_or.convert()
 overlay = [pygame.image.load("textures/overlayplayer1.png"), pygame.image.load("textures/overlayplayer2.png"), pygame.image.load("textures/overlayplayer3.png"), pygame.image.load("textures/overlayplayer4.png")]
 overlay = [pygame.transform.scale(overlay[0], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[1], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[2], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[3], (infoObject.current_w, infoObject.current_h))]
 font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
@@ -62,6 +59,7 @@ while launched:
     sec = int(seconds)
     seconds = font.render(seconds, True, (0,0,0))
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
+    screen.blit(earth, (infoObject.current_w * 600 / 1600, infoObject.current_h * 400 / 1000))
     for event in pygame.event.get():
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
             launched = False
