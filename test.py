@@ -77,8 +77,6 @@ while launched:
     screen.blit(middle1, (300, 600))
     screen.blit(big, (600, 300))
 
-    '''if (print_inf % 2 != 0):
-        widget.print_info(screen, infoObject, rect)'''
     screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))
     sec = int(seconds)
