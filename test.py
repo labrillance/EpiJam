@@ -21,6 +21,9 @@ popup = pygame.image.load("textures/popup.png")
 little1 = pygame.image.load("textures/little1.png")
 middle1 = pygame.image.load("textures/middle1.png")
 big = pygame.image.load("textures/big.png")
+gold = pygame.image.load("textures/icon_gold.png")
+iron = pygame.image.load("textures/icon_iron.png")
+oil = pygame.image.load("textures/oil_icon.png")
 #---------------------------FONT---------------------------------------------------
 font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
 #---------------------------init variable and GLOBAL-------------------------------------------------
@@ -30,7 +33,6 @@ global menu_launch
 menu_launch = True
 turn = 0
 print_inf = 0
-
 #---------------------------PYGAME.DISPLAY-----------------------------------------
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Planet Star")
@@ -41,6 +43,9 @@ overlay = [pygame.transform.scale(overlay[0], (infoObject.current_w, infoObject.
 little1 = pygame.transform.scale(little1, (round(infoObject.current_w * 60 / 1920), round(infoObject.current_h * 60 / 1080)))
 middle1 = pygame.transform.scale(middle1, (round(infoObject.current_w * 190 / 1920), round(infoObject.current_h * 173 / 1080)))
 big = pygame.transform.scale(big, (round(infoObject.current_w * 180 / 1980), round(infoObject.current_h * 180 / 1020)))
+gold = pygame.transform.scale(gold, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
+iron = pygame.transform.scale(iron, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
+oil = pygame.transform.scale(oil, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
 #---------------------------Function-----------------------------------------------
 def init_players(list):
     i = 0
@@ -52,12 +57,25 @@ def init_players(list):
         players.append(classes.player())
         players[i].name = list[i]
         players[i].name = font.render(players[i].name, True, (0,0,0))
+        players[i].gold = 0
+        players[i].oil = 0
+        players[i].iron = 0
         players[i].bases.prop = list[i]
         players[i].bases.posx = infoObject.current_w * x[i] / 1600
         players[i].bases.posy = infoObject.current_h * y[i] / 1000
-        players[i].bases.image = pygame.image.load("textures/earth.png")
         i += 1
     return players
+
+def create_texture(pl, oil, gold, iron):
+    nb_gold_text = font.render(str(pl.gold), True, (0, 128, 0))
+    nb_oil_text = font.render(str(pl.oil), True, (0, 128, 0))
+    nb_iron_text = font.render(str(pl.iron), True, (0, 128, 0))
+    screen.blit(gold, (infoObject.current_w * 20 / 1600, infoObject.current_h * 900 / 1000))
+    screen.blit(nb_gold_text, (infoObject.current_w * 90 / 1600, infoObject.current_h * 910 / 1000))
+    screen.blit(iron, (infoObject.current_w * 190 / 1600, infoObject.current_h * 900 / 1000))
+    screen.blit(nb_iron_text, (infoObject.current_w * 260 / 1600, infoObject.current_h * 910 / 1000))
+    screen.blit(oil, (infoObject.current_w * 360 / 1600, infoObject.current_h * 900 / 1000))
+    screen.blit(nb_oil_text, (infoObject.current_w * 430 / 1600, infoObject.current_h * 910 / 1000))
 #---------------------------/function---------------------------------------------
 planete.random_planete(1, 1, 1, 1, 1)
 list = menu.display_menu(screen, menu_launch)
@@ -73,21 +91,14 @@ while launched:
     pygame.display.init()
     screen.blit(image, (0,0))
     screen.blit(overlay[turn], (0, 0))
-    screen.blit(little1, (300, 300))
-    screen.blit(middle1, (300, 600))
-    screen.blit(big, (600, 300))
-
-    '''if (print_inf % 2 != 0):
-        widget.print_info(screen, infoObject, rect)'''
     screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
+    create_texture(players[turn], oil, gold, iron)
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))
     sec = int(seconds)
     seconds = font.render(seconds, True, (0,0,0))
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
     if disp_base_info:
         screen.blit(popup, (95, 680))
-    for i in range (0, 4):
-        screen.blit(players[i].bases.image, (players[i].bases.posx, players[i].bases.posy))
     for event in pygame.event.get():
         if disp_base_info != True:
             x1, y1 = pygame.mouse.get_pos()
@@ -116,5 +127,4 @@ while launched:
             turn += 1
         else:
             turn = 0
-        
     pygame.display.flip()
