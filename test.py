@@ -23,6 +23,13 @@ icon = pygame.image.load("textures/icon_game.png")
 image = pygame.image.load("textures/tets.jpg")
 overlay = [pygame.image.load("textures/overlayplayer1.png"), pygame.image.load("textures/overlayplayer2.png"), pygame.image.load("textures/overlayplayer3.png"), pygame.image.load("textures/overlayplayer4.png")]
 popup = pygame.image.load("textures/popup.png")
+little1 = pygame.image.load("textures/little1.png")
+middle1 = pygame.image.load("textures/middle1.png")
+big = pygame.image.load("textures/big.png")
+gold = pygame.image.load("textures/icon_gold.png")
+iron = pygame.image.load("textures/icon_iron.png")
+oil = pygame.image.load("textures/oil_icon.png")
+#---------------------------FONT---------------------------------------------------
 
 #---------------------------FONT---------------------------------------------------#
 
@@ -37,6 +44,7 @@ pop_up_id =-1
 menu_launch = True
 turn = 0
 print_inf = 0
+#---------------------------PYGAME.DISPLAY-----------------------------------------
 
 #---------------------------PYGAME.DISPLAY-----------------------------------------#
 
@@ -47,6 +55,13 @@ pygame.display.set_caption("Planet Star")
 
 image = pygame.transform.scale(image, (infoObject.current_w, infoObject.current_h))
 overlay = [pygame.transform.scale(overlay[0], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[1], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[2], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[3], (infoObject.current_w, infoObject.current_h))]
+little1 = pygame.transform.scale(little1, (round(infoObject.current_w * 60 / 1920), round(infoObject.current_h * 60 / 1080)))
+middle1 = pygame.transform.scale(middle1, (round(infoObject.current_w * 190 / 1920), round(infoObject.current_h * 173 / 1080)))
+big = pygame.transform.scale(big, (round(infoObject.current_w * 180 / 1980), round(infoObject.current_h * 180 / 1020)))
+gold = pygame.transform.scale(gold, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
+iron = pygame.transform.scale(iron, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
+oil = pygame.transform.scale(oil, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
+#---------------------------Function-----------------------------------------------
 
 #---------------------------Function-----------------------------------------------#
 def init_players(list):
@@ -59,13 +74,16 @@ def init_players(list):
         players.append(classes.player())
         players[i].name = list[i]
         players[i].name = font.render(players[i].name, True, (0,0,0))
+        players[i].gold = 0
+        players[i].oil = 0
+        players[i].iron = 0
         players[i].bases.prop = list[i]
         players[i].bases.posx = infoObject.current_w * x[i] / 1600
         players[i].bases.posy = infoObject.current_h * y[i] / 1000
-        players[i].bases.image = pygame.image.load("textures/earth.png")
         i += 1
     return players
 
+<<<<<<< HEAD
 def info_display_on_click(event, disp_base_info, x1, y1, pop_up_id):
     if disp_base_info != True:
         i = 0
@@ -89,6 +107,19 @@ def info_display_on_click(event, disp_base_info, x1, y1, pop_up_id):
             i += 1
     return disp_base_info, pop_up_id
 
+=======
+def create_texture(pl, oil, gold, iron):
+    nb_gold_text = font.render(str(pl.gold), True, (0, 128, 0))
+    nb_oil_text = font.render(str(pl.oil), True, (0, 128, 0))
+    nb_iron_text = font.render(str(pl.iron), True, (0, 128, 0))
+    screen.blit(gold, (infoObject.current_w * 20 / 1600, infoObject.current_h * 900 / 1000))
+    screen.blit(nb_gold_text, (infoObject.current_w * 90 / 1600, infoObject.current_h * 910 / 1000))
+    screen.blit(iron, (infoObject.current_w * 190 / 1600, infoObject.current_h * 900 / 1000))
+    screen.blit(nb_iron_text, (infoObject.current_w * 260 / 1600, infoObject.current_h * 910 / 1000))
+    screen.blit(oil, (infoObject.current_w * 360 / 1600, infoObject.current_h * 900 / 1000))
+    screen.blit(nb_oil_text, (infoObject.current_w * 430 / 1600, infoObject.current_h * 910 / 1000))
+#---------------------------/function---------------------------------------------
+>>>>>>> a23b4a9d0a97b0ad03c3420f71ecceb678b4ab30
 #---------------------------/function----------------------------------------------#
 
 planete.random_planete(1, 1, 1, 1, 1)
@@ -106,6 +137,12 @@ while launched:
     x1, y1 = pygame.mouse.get_pos()
     screen.blit(image, (0,0))
     screen.blit(overlay[turn], (0, 0))
+<<<<<<< HEAD
+=======
+
+    screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
+    create_texture(players[turn], oil, gold, iron)
+>>>>>>> a23b4a9d0a97b0ad03c3420f71ecceb678b4ab30
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))
     sec = int(seconds)
     seconds = font.render(seconds, True, (0,0,0))
@@ -129,5 +166,4 @@ while launched:
             turn += 1
         else:
             turn = 0
-        
     pygame.display.flip()
