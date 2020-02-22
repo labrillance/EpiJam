@@ -29,7 +29,6 @@ big = pygame.image.load("textures/big.png")
 gold = pygame.image.load("textures/icon_gold.png")
 iron = pygame.image.load("textures/icon_iron.png")
 oil = pygame.image.load("textures/oil_icon.png")
-#---------------------------FONT---------------------------------------------------
 
 #---------------------------FONT---------------------------------------------------#
 
@@ -44,7 +43,6 @@ pop_up_id =-1
 menu_launch = True
 turn = 0
 print_inf = 0
-#---------------------------PYGAME.DISPLAY-----------------------------------------
 
 #---------------------------PYGAME.DISPLAY-----------------------------------------#
 
@@ -61,9 +59,9 @@ big = pygame.transform.scale(big, (round(infoObject.current_w * 180 / 1980), rou
 gold = pygame.transform.scale(gold, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
 iron = pygame.transform.scale(iron, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
 oil = pygame.transform.scale(oil, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
-#---------------------------Function-----------------------------------------------
 
 #---------------------------Function-----------------------------------------------#
+
 def init_players(list):
     i = 0
     players = []
@@ -116,7 +114,11 @@ def create_texture(pl, oil, gold, iron):
     screen.blit(nb_iron_text, (infoObject.current_w * 260 / 1600, infoObject.current_h * 910 / 1000))
     screen.blit(oil, (infoObject.current_w * 360 / 1600, infoObject.current_h * 900 / 1000))
     screen.blit(nb_oil_text, (infoObject.current_w * 430 / 1600, infoObject.current_h * 910 / 1000))
+<<<<<<< HEAD
 #---------------------------/function---------------------------------------------
+=======
+
+>>>>>>> 6fab4e614802441e6989f9c41b95e2e261f02d4b
 #---------------------------/function----------------------------------------------#
 
 planete.random_planete(1, 1, 1, 1, 1)
