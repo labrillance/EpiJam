@@ -11,7 +11,7 @@ class TextBox(pygame.sprite.Sprite):
   def __init__(self):
     pygame.sprite.Sprite.__init__(self)
     self.text = ""
-    self.font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", 62)
+    self.font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 62 / (1600 * 1000))))
     self.player = "Player 1"
     self.image = self.font.render("Enter your name", True, [255, 255, 255])
     self.rect = self.image.get_rect()
