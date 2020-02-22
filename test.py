@@ -114,11 +114,8 @@ def create_texture(pl, oil, gold, iron):
     screen.blit(nb_iron_text, (infoObject.current_w * 260 / 1600, infoObject.current_h * 910 / 1000))
     screen.blit(oil, (infoObject.current_w * 360 / 1600, infoObject.current_h * 900 / 1000))
     screen.blit(nb_oil_text, (infoObject.current_w * 430 / 1600, infoObject.current_h * 910 / 1000))
-<<<<<<< HEAD
 #---------------------------/function---------------------------------------------
-=======
 
->>>>>>> 6fab4e614802441e6989f9c41b95e2e261f02d4b
 #---------------------------/function----------------------------------------------#
 
 planete.random_planete(1, 1, 1, 1, 1)
