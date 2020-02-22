@@ -83,7 +83,6 @@ def init_players(list):
         i += 1
     return players
 
-<<<<<<< HEAD
 def info_display_on_click(event, disp_base_info, x1, y1, pop_up_id):
     if disp_base_info != True:
         i = 0
@@ -107,7 +106,6 @@ def info_display_on_click(event, disp_base_info, x1, y1, pop_up_id):
             i += 1
     return disp_base_info, pop_up_id
 
-=======
 def create_texture(pl, oil, gold, iron):
     nb_gold_text = font.render(str(pl.gold), True, (0, 128, 0))
     nb_oil_text = font.render(str(pl.oil), True, (0, 128, 0))
@@ -119,7 +117,6 @@ def create_texture(pl, oil, gold, iron):
     screen.blit(oil, (infoObject.current_w * 360 / 1600, infoObject.current_h * 900 / 1000))
     screen.blit(nb_oil_text, (infoObject.current_w * 430 / 1600, infoObject.current_h * 910 / 1000))
 #---------------------------/function---------------------------------------------
->>>>>>> a23b4a9d0a97b0ad03c3420f71ecceb678b4ab30
 #---------------------------/function----------------------------------------------#
 
 planete.random_planete(1, 1, 1, 1, 1)
@@ -137,12 +134,9 @@ while launched:
     x1, y1 = pygame.mouse.get_pos()
     screen.blit(image, (0,0))
     screen.blit(overlay[turn], (0, 0))
-<<<<<<< HEAD
-=======
 
     screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
     create_texture(players[turn], oil, gold, iron)
->>>>>>> a23b4a9d0a97b0ad03c3420f71ecceb678b4ab30
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))
     sec = int(seconds)
     seconds = font.render(seconds, True, (0,0,0))
