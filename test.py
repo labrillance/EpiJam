@@ -11,6 +11,7 @@ infoObject = pygame.display.Info()
 screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h), HWSURFACE | DOUBLEBUF | FULLSCREEN)
 
 icon = pygame.image.load("textures/icon_game.png")
+
 global launched
 launched = False
 global menu_launch
@@ -22,6 +23,7 @@ pygame.display.set_caption("Planet Star")
 
 
 image = pygame.image.load("textures/tets.jpg")
+image = pygame.transform.scale(image, (infoObject.current_w, infoObject.current_h))
 earth = pygame.image.load("textures/earth.png")
 jupiter = pygame.image.load("textures/jupiter.png")
 mars = pygame.image.load("textures/mars.png")
