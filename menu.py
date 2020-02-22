@@ -92,7 +92,7 @@ def display_menu(screen, menu_launch):
                         textBox.update()
                         nb_players += 1
             if event.type == pygame.MOUSEBUTTONDOWN :
-                if event.button == 1 and x > infoObject.current_w * 1175 / 1600 and x < infoObject.current_w * (1775 + 225) / 1600 and y > infoObject.current_h * 792 / 1600 and y < infoObject.current_h * (792 + 75) / 1600 and nb_players >= 4:
+                if event.button == 1 and x > infoObject.current_w * 1175 / 1600 and x < infoObject.current_w * (1775 + 225) / 1600 and y > infoObject.current_h * 792 / 1000 and y < infoObject.current_h * (792 + 75) / 1000 and nb_players >= 4:
                     launched = True
                     menu_launch = False
                     return list_players
