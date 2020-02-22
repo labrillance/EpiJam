@@ -9,35 +9,39 @@ import math
 
 pygame.init()
 
-infoObject = pygame.display.Info()
-
-screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h), HWSURFACE | DOUBLEBUF | FULLSCREEN)
-
+#---------------------------INITIALISATION WINDOW---------------------------------
+infoObject = pygame.display.Info()          #info fenêtre utilisateur
+screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h), 0) #création de la fenêtre principale
+#---------------------------LOAD SPRITE AND ICONE----------------------------------
 icon = pygame.image.load("textures/icon_game.png")
-
-planete.random_planete(1, 1, 1, 1, 1)
-
-
+image = pygame.image.load("textures/tets.jpg")
+earth = pygame.image.load("textures/earth.png")
+overlay = [pygame.image.load("textures/overlayplayer1.png"), pygame.image.load("textures/overlayplayer2.png"), pygame.image.load("textures/overlayplayer3.png"), pygame.image.load("textures/overlayplayer4.png")]
+popup = pygame.image.load("textures/popup.png")
+little1 = pygame.image.load("textures/little1.png")
+middle1 = pygame.image.load("textures/middle1.png")
+big = pygame.image.load("textures/big.png")
+#---------------------------FONT---------------------------------------------------
+font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
+#---------------------------init variable and GLOBAL-------------------------------------------------
 global launched
 launched = False
 global menu_launch
 menu_launch = True
+turn = 0
+print_inf = 0
 
+#---------------------------PYGAME.DISPLAY-----------------------------------------
 pygame.display.set_icon(icon)
 pygame.display.set_caption("Planet Star")
-
-image = pygame.image.load("textures/tets.jpg")
+#---------------------------SCALE--------------------------------------------------
 image = pygame.transform.scale(image, (infoObject.current_w, infoObject.current_h))
-earth = pygame.image.load("textures/earth.png")
 earth = pygame.transform.scale(earth, (infoObject.current_w, infoObject.current_h))
-overlay = [pygame.image.load("textures/overlayplayer1.png"), pygame.image.load("textures/overlayplayer2.png"), pygame.image.load("textures/overlayplayer3.png"), pygame.image.load("textures/overlayplayer4.png")]
 overlay = [pygame.transform.scale(overlay[0], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[1], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[2], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[3], (infoObject.current_w, infoObject.current_h))]
-font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
-popup = pygame.image.load("textures/popup.png")
-list = menu.display_menu(screen, menu_launch)
-if (len(list) == 4):
-    launched = True
-
+little1 = pygame.transform.scale(little1, (round(infoObject.current_w * 60 / 1920), round(infoObject.current_h * 60 / 1080)))
+middle1 = pygame.transform.scale(middle1, (round(infoObject.current_w * 190 / 1920), round(infoObject.current_h * 173 / 1080)))
+big = pygame.transform.scale(big, (round(infoObject.current_w * 180 / 1980), round(infoObject.current_h * 180 / 1020)))
+#---------------------------Function-----------------------------------------------
 def init_players(list):
     i = 0
     players = []
@@ -54,42 +58,44 @@ def init_players(list):
         players[i].bases.image = pygame.image.load("textures/earth.png")
         i += 1
     return players
-turn = 0
+#---------------------------/function---------------------------------------------
+planete.random_planete(1, 1, 1, 1, 1)
+list = menu.display_menu(screen, menu_launch)
+if (len(list) == 4):
+    launched = True
+
 players = init_players(list)
 clock_turn = pygame.time.get_ticks()
 seconds = ""
 disp_base_info = False
 
-def click_on_base():
-    disp_base_info = False
-    x1, y1 = pygame.mouse.get_pos()
-    x2, y2 = 95, 835
-    distance = math.hypot(x1 - x2, y1 - y2)
-    for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1 and distance <= 45:
-                disp_base_info = True
-    return disp_base_info
-
 while launched:    
     pygame.display.init()
     screen.blit(image, (0,0))
     screen.blit(overlay[turn], (0, 0))
-    screen.blit(players[turn].name, (infoObject.current_w * 12 / 1600, infoObject.current_h * 871 / 1000))
-    if (print_inf % 2 != 0):
-        widget.print_info(screen, infoObject, rect)
+    screen.blit(little1, (300, 300))
+    screen.blit(middle1, (300, 600))
+    screen.blit(big, (600, 300))
+
+    '''if (print_inf % 2 != 0):
+        widget.print_info(screen, infoObject, rect)'''
     screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))
     sec = int(seconds)
     seconds = font.render(seconds, True, (0,0,0))
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
-    if disp_base_info != True:
-        disp_base_info = click_on_base()
     if disp_base_info:
         screen.blit(popup, (95, 680))
     for i in range (0, 4):
         screen.blit(players[i].bases.image, (players[i].bases.posx, players[i].bases.posy))
     for event in pygame.event.get():
+        if disp_base_info != True:
+            x1, y1 = pygame.mouse.get_pos()
+            x2, y2 = 95, 835
+            distance = math.hypot(x1 - x2, y1 - y2)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1 and distance <= 45:
+                    disp_base_info = True
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
             launched = False
         if (event.type == KEYDOWN and event.key == K_RETURN):
