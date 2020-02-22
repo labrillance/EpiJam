@@ -44,7 +44,7 @@ while launched:
     screen.blit(sprite, (400,10))
     widget.print_incone(screen, incone_or)
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
             launched = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             if pygame.mouse.get_pos()[0] >= 1500 and pygame.mouse.get_pos()[1] >= 900 \
