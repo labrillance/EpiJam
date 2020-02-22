@@ -14,6 +14,9 @@ screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h), H
 
 icon = pygame.image.load("textures/icon_game.png")
 
+planete.random_planete(1, 1, 1, 1, 1)
+
+
 global launched
 launched = False
 global menu_launch
@@ -50,6 +53,7 @@ turn = 0
 players = init_players(list)
 clock_turn = pygame.time.get_ticks()
 seconds = ""
+
 
 while launched:
     pygame.display.init()
