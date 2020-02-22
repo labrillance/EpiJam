@@ -15,7 +15,7 @@ pygame.init()
 infoObject = pygame.display.Info()
 
 #création de la fenêtre principale
-screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h), 0)
+screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h), HWSURFACE | DOUBLEBUF | FULLSCREEN)
 
 #---------------------------LOAD SPRITE AND ICONE----------------------------------#
 
@@ -33,6 +33,7 @@ font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_
 global launched
 launched = False
 global menu_launch
+pop_up_id =-1
 menu_launch = True
 turn = 0
 print_inf = 0
@@ -65,6 +66,29 @@ def init_players(list):
         i += 1
     return players
 
+def info_display_on_click(event, disp_base_info, x1, y1, pop_up_id):
+    if disp_base_info != True:
+        i = 0
+        while i < 4 and disp_base_info != True: 
+            x2, y2 = players[i].bases.posx + 45, players[i].bases.posy + 100
+            distance = math.hypot(x1 - x2, y1 - y2)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1 and distance <= 45:
+                    disp_base_info = True
+                    pop_up_id = i
+            i += 1
+    else:
+        i = 0
+        while i < 4 and disp_base_info != False:
+            x2, y2 = players[i].bases.posx + 45, players[i].bases.posy + 100
+            players[i].bases.posx + 45, players[i].bases.posy + 100
+            distance = math.hypot(x1 - x2, y1 - y2)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1 and distance <= 45:
+                    disp_base_info = False
+            i += 1
+    return disp_base_info, pop_up_id
+
 #---------------------------/function----------------------------------------------#
 
 planete.random_planete(1, 1, 1, 1, 1)
@@ -79,24 +103,18 @@ disp_base_info = False
 
 while launched:    
     pygame.display.init()
+    x1, y1 = pygame.mouse.get_pos()
     screen.blit(image, (0,0))
     screen.blit(overlay[turn], (0, 0))
-
-    screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))
     sec = int(seconds)
     seconds = font.render(seconds, True, (0,0,0))
+    screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
     if disp_base_info:
-        screen.blit(popup, (95, 680))
+        screen.blit(popup, (players[pop_up_id].bases.posx, players[pop_up_id].bases.posy))
     for event in pygame.event.get():
-        if disp_base_info != True:
-            x1, y1 = pygame.mouse.get_pos()
-            x2, y2 = 95, 835
-            distance = math.hypot(x1 - x2, y1 - y2)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1 and distance <= 45:
-                    disp_base_info = True
+        disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
             launched = False
         if (event.type == KEYDOWN and event.key == K_RETURN):
@@ -105,12 +123,6 @@ while launched:
                 turn += 1
             else:
                 turn = 0
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if (print_inf % 2 == 0 and infoObject.current_w * 1400 / 1600, infoObject.current_h  * 600 / 1000, infoObject.current_w * 200 / 1600, infoObject.current_h  * 400 / 1000):
-                print_inf += 1
-                rect = (infoObject.current_w * 1400 / 1600, infoObject.current_h  * 800 / 1000, infoObject.current_w * 200 / 1600, infoObject.current_h  * 200 / 1000)
-            elif (print_inf % 2 != 0 and infoObject.current_w * 1400 / 1600, infoObject.current_h  * 600 / 1000, infoObject.current_w * 200 / 1600, infoObject.current_h  * 400 / 1000):
-                print_inf = 0
     if sec <= 0:
         clock_turn = pygame.time.get_ticks()
         if turn != 3:
