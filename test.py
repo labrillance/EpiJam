@@ -147,14 +147,12 @@ def add_planete_colonise(player, all_planete, turn):
 def buy_planete(event, player, planete):
     x, y = pygame.mouse.get_pos()
     if event.type == pygame.MOUSEBUTTONDOWN :
-        if event.button == 1:# and x > infoObject.current_w * 1500 / 1600 and x < infoObject.current_w * (1500 + 93) / 1600 and y > infoObject.current_h * 903 / 1000 and y < infoObject.current_h * (903 + 91) / 1000:
-            if planete.colonise == 0:
-                planete.colonise == player
         if event.button == 1 and x > infoObject.current_w * 1233 / 1920 and x < infoObject.current_w * (1233 + 192) / 1920 and y > infoObject.current_h * 771 / 1080 and y < infoObject.current_h * (771 + 78) / 1080:
             if all_planete[planete].colonise == 0:
                 if (players[player].gold > all_planete[planete].valeur):
                     players[player].gold -= all_planete[planete].valeur
                     all_planete[planete].colonise = player + 1
+
 def upgrade_fusee(event, x, y, player, turn):
     if event.type == pygame.MOUSEBUTTONDOWN:
        if x > infoObject.current_w * 550 / 1600 and x < infoObject.current_w  * 670 / 1600 and y > infoObject.current_h * 865 / 1000 and y < infoObject.current_h * 985 / 1000 and player[turn].gold - player[turn].price_fusee_atk[0] > 0 and player[turn].iron - player[turn].price_fusee_atk[1] > 0:
