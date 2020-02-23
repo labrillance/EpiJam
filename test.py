@@ -84,7 +84,11 @@ def init_players(list):
         
         players.append(classes.player())
         players[i].name = list[i]
+<<<<<<< HEAD
         players[i].name = name_font.render(players[i].name, True, (0,0,0))
+=======
+        players[i].name = font.render(players[i].name, True, color[i])
+>>>>>>> 6f30e228c346c42d4488894cf36a5a4be3baf9bf
         players[i].gold = 0
         players[i].oil = 0
         players[i].iron = 0
