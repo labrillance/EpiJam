@@ -29,6 +29,8 @@ class bases:
 
 class fusee:
     def __init__(self):
-        self.status
-        self.vitesse
-        self.power
+        self.status = 0
+        self.vitesse = 0
+        self.power = 0
+        self.posx = 0
+        self.posy = 0
