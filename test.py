@@ -26,7 +26,11 @@ popup = pygame.image.load("textures/popup.png")
 gold = pygame.image.load("textures/icon_gold.png")
 iron = pygame.image.load("textures/icon_iron.png")
 oil = pygame.image.load("textures/oil_icon.png")
-fusee = [pygame.image.load("textures/fusee.png"), pygame.image.load("textures/fusee.png"), pygame.image.load("textures/fusee.png"), pygame.image.load("textures/fusee.png")]
+fusee = pygame.image.load("textures/fusee.png")
+btnatk = pygame.image.load("textures/btnatk+.png")
+btndef = pygame.image.load("textures/btndef+.png")
+btnvit = pygame.image.load("textures/btnvit+.png")
+btncolo = pygame.image.load("textures/btncolo.png")
 
 #---------------------------FONT---------------------------------------------------#
 
