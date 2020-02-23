@@ -33,6 +33,7 @@ btndef = pygame.image.load("textures/btndef+.png")
 btnvit = pygame.image.load("textures/btnvit+.png")
 btncolo = pygame.image.load("textures/btncolo.png")
 button_buy = pygame.image.load("textures/buy.png")
+overlay_com = pygame.image.load("./textures/overlay.png")
 #---------------------------FONT---------------------------------------------------#
 
 font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
@@ -72,6 +73,7 @@ btnatk = pygame.transform.scale(btnatk, (round(infoObject.current_w * 120 / 1600
 btncolo = pygame.transform.scale(btncolo, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
 popup = pygame.transform.scale(popup, (infoObject.current_w, infoObject.current_h))
 button_buy = pygame.transform.scale(button_buy, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
+overlay_com = pygame.transform.scale(overlay_com, (infoObject.current_w, infoObject.current_h))
 
 #---------------------------Function-----------------------------------------------#
 
@@ -84,11 +86,7 @@ def init_players(list):
         
         players.append(classes.player())
         players[i].name = list[i]
-<<<<<<< HEAD
-        players[i].name = name_font.render(players[i].name, True, (0,0,0))
-=======
-        players[i].name = font.render(players[i].name, True, color[i])
->>>>>>> 6f30e228c346c42d4488894cf36a5a4be3baf9bf
+        players[i].name = name_font.render(players[i].name, True, color[i])
         players[i].gold = 0
         players[i].oil = 0
         players[i].iron = 0
@@ -203,7 +201,7 @@ while launched:
     pygame.display.init()
     x1, y1 = pygame.mouse.get_pos()
     screen.blit(image, (0,0))
-    screen.blit(overlay[turn], (0, 0))
+    screen.blit(overlay_com, (0, 0))
 
     print_aire(all_planete, turn)
     screen.blit(players[turn].name, (infoObject.current_w * 850 / 1920, infoObject.current_h * 15 / 1000))
