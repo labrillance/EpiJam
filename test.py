@@ -133,6 +133,13 @@ while launched:
     x1, y1 = pygame.mouse.get_pos()
     screen.blit(image, (0,0))
     screen.blit(overlay[turn], (0, 0))
+
+    for i in range (0, 35):
+        if all_planete[i].colonise == turn:
+            players[turn].gold += all_planete[i].gold
+            players[turn].oil += all_planete[i].oil
+            players[turn].iron += all_planete[i].iron
+
     print_aire(all_planete, turn)
     screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
     create_texture(players[turn], oil, gold, iron)
