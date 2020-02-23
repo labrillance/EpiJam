@@ -6,45 +6,45 @@ from random import randrange
 def init_planete():
     planete = []
 
-    planete.append(random_planete(4, 179, 67, 32, 32, "Lune 1"))
-    planete.append(random_planete(4, 215, 184, 32, 32, "Lune 2"))
-    planete.append(random_planete(4, 321, 201, 32, 32, "Lune 3"))
-    planete.append(random_planete(4, 246, 617, 32, 32, "Lune 4"))
-    planete.append(random_planete(4, 158, 675, 32, 32, "Lune 5"))
-    planete.append(random_planete(4, 161, 789, 32, 32, "Lune 6"))
-    planete.append(random_planete(4, 739, 222, 32, 32, "Lune 7"))
-    planete.append(random_planete(4, 574, 342, 32, 32, "Lune 8"))
-    planete.append(random_planete(4, 646, 576, 32, 32, "Lune 9"))
-    planete.append(random_planete(4, 1020, 346, 32, 32, "Lune 10"))
-    planete.append(random_planete(4, 990, 600, 32, 32, "Lune 11"))
-    planete.append(random_planete(4, 1337, 28, 32, 32, "Lune 12"))
-    planete.append(random_planete(4, 1330, 146, 32, 32, "Lune 13"))
-    planete.append(random_planete(4, 1232, 197, 32, 32, "Lune 14"))
-    planete.append(random_planete(4, 1248, 596, 32, 32, "Lune 15"))
-    planete.append(random_planete(4, 1333, 647, 32, 32, "Lune 16"))
-    planete.append(random_planete(4, 1340, 773, 32, 32, "Lune 17"))
-    planete.append(random_planete(1, 579, 732, 63, 65, "BB8"))
-    planete.append(random_planete(1, 647, 83, 63, 65, "Lodoth"))
-    planete.append(random_planete(3, 701, 393, 180, 180, "Mudrehiri"))
-    planete.append(random_planete(-1, 271, 33, 96, 92, "TERRA1"))
-    planete.append(random_planete(-2, 257, 730, 92, 93, "TERR2"))
-    planete.append(random_planete(-3, 1186, 27, 96, 94, "TERRA3"))
-    planete.append(random_planete(-4, 1187, 718, 90, 94, "TERRA4"))
-    planete.append(random_planete(1, 413, 201, 68, 65, "Gisiuhiri"))
-    planete.append(random_planete(2, 66, 368, 141, 143, "Agora"))
-    planete.append(random_planete(1, 334, 390, 66, 67, "Nion"))
-    planete.append(random_planete(1, 445, 579, 64, 64, "Bromia"))
-    planete.append(random_planete(1, 857, 178, 65, 64, "Namides"))
-    planete.append(random_planete(1, 999, 108, 61, 61, "Cetania"))
-    planete.append(random_planete(2, 1395, 361, 148, 146, "Team JUL"))
-    planete.append(random_planete(1, 1115, 497, 64, 63, "Treaclite"))
-    planete.append(random_planete(1, 1263, 339, 65, 63, "Cezuno"))
-    planete.append(random_planete(1, 950, 710, 62, 62, "Sailia"))
-    planete.append(random_planete(1, 773, 658, 64, 62, "R2D2"))
+    planete.append(random_planete(4, 179, 67, 32, 32, "Lune 1", 10))
+    planete.append(random_planete(4, 215, 184, 32, 32, "Lune 2", 10))
+    planete.append(random_planete(4, 321, 201, 32, 32, "Lune 3", 10))
+    planete.append(random_planete(4, 246, 617, 32, 32, "Lune 4", 10))
+    planete.append(random_planete(4, 158, 675, 32, 32, "Lune 5", 10))
+    planete.append(random_planete(4, 161, 789, 32, 32, "Lune 6", 10))
+    planete.append(random_planete(4, 739, 222, 32, 32, "Lune 7", 10))
+    planete.append(random_planete(4, 574, 342, 32, 32, "Lune 8", 10))
+    planete.append(random_planete(4, 646, 576, 32, 32, "Lune 9", 10))
+    planete.append(random_planete(4, 1020, 346, 32, 32, "Lune 10", 10))
+    planete.append(random_planete(4, 990, 600, 32, 32, "Lune 11", 10))
+    planete.append(random_planete(4, 1337, 28, 32, 32, "Lune 12", 10))
+    planete.append(random_planete(4, 1330, 146, 32, 32, "Lune 13", 10))
+    planete.append(random_planete(4, 1232, 197, 32, 32, "Lune 14", 10))
+    planete.append(random_planete(4, 1248, 596, 32, 32, "Lune 15", 10))
+    planete.append(random_planete(4, 1333, 647, 32, 32, "Lune 16", 10))
+    planete.append(random_planete(4, 1340, 773, 32, 32, "Lune 17", 10))
+    planete.append(random_planete(1, 579, 732, 63, 65, "BB8", 100))
+    planete.append(random_planete(1, 647, 83, 63, 65, "Lodoth", 100))
+    planete.append(random_planete(3, 701, 393, 180, 180, "Mudrehiri", 5000))
+    planete.append(random_planete(-1, 271, 33, 96, 92, "TERRA1", 0))
+    planete.append(random_planete(-2, 257, 730, 92, 93, "TERR2", 0))
+    planete.append(random_planete(-3, 1186, 27, 96, 94, "TERRA3", 0))
+    planete.append(random_planete(-4, 1187, 718, 90, 94, "TERRA4", 0))
+    planete.append(random_planete(1, 413, 201, 68, 65, "Gisiuhiri", 100))
+    planete.append(random_planete(2, 66, 368, 141, 143, "Agora", 500))
+    planete.append(random_planete(1, 334, 390, 66, 67, "Nion", 100))
+    planete.append(random_planete(1, 445, 579, 64, 64, "Bromia", 100))
+    planete.append(random_planete(1, 857, 178, 65, 64, "Namides", 100))
+    planete.append(random_planete(1, 999, 108, 61, 61, "Cetania", 100))
+    planete.append(random_planete(2, 1395, 361, 148, 146, "Team JUL", 500))
+    planete.append(random_planete(1, 1115, 497, 64, 63, "Treaclite", 100))
+    planete.append(random_planete(1, 1263, 339, 65, 63, "Cezuno", 100))
+    planete.append(random_planete(1, 950, 710, 62, 62, "Sailia", 100))
+    planete.append(random_planete(1, 773, 658, 64, 62, "R2D2", 100))
 
     return (planete)
 
-def random_planete(taille, posx, posy, long, larg, name):
+def random_planete(taille, posx, posy, long, larg, name, valeur):
     result = classes.planete()
     result.name = name
     result.x = posx
@@ -52,6 +52,7 @@ def random_planete(taille, posx, posy, long, larg, name):
     result.long = long
     result.larg = larg
     result.colonise = 0
+    result.valeur = valeur
     if taille < 0:
         result.gold = 35
         result.oil = 130

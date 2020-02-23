@@ -134,6 +134,14 @@ def add_planete_colonise(player, all_planete, turn):
             players[turn].iron += all_planete[i].iron
     return players[turn]
 
+def buy_planete(event, player, planete):
+    x, y = pygame.mouse.get_pos()
+    if event.type == pygame.MOUSEBUTTONDOWN :
+        if event.button == 1:# and x > infoObject.current_w * 1500 / 1600 and x < infoObject.current_w * (1500 + 93) / 1600 and y > infoObject.current_h * 903 / 1000 and y < infoObject.current_h * (903 + 91) / 1000:
+            if planete.colonise == 0:
+                planete.colonise == player
+
+
 #---------------------------/function----------------------------------------------#
 list = menu.display_menu(screen, menu_launch)
 if (len(list) == 4):
