@@ -114,10 +114,10 @@ def create_texture(pl, oil, gold, iron):
     screen.blit(nb_iron_text, (infoObject.current_w * 260 / 1600, infoObject.current_h * 910 / 1000))
     screen.blit(oil, (infoObject.current_w * 360 / 1600, infoObject.current_h * 900 / 1000))
     screen.blit(nb_oil_text, (infoObject.current_w * 430 / 1600, infoObject.current_h * 910 / 1000))
+#---------------------------/function---------------------------------------------
 
 #---------------------------/function----------------------------------------------#
 
-planete.random_planete(1, 1, 1, 1, 1)
 list = menu.display_menu(screen, menu_launch)
 if (len(list) == 4):
     launched = True
