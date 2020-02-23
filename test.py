@@ -6,6 +6,7 @@ import widget
 import planete
 import init.init as classes
 import math
+import fusee
 
 pygame.init()
 
@@ -52,6 +53,8 @@ price_fusee_atk.append(600)
 price_fusee_shild = []
 price_fusee_shild.append(10)
 price_fusee_shild.append(500)
+send_fusee = 1
+
 #---------------------------PYGAME.DISPLAY-----------------------------------------#
 
 pygame.display.set_icon(icon)
@@ -69,6 +72,8 @@ btnatk = pygame.transform.scale(btnatk, (round(infoObject.current_w * 200 / 1600
 btndef = pygame.transform.scale(btndef, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
 btnvit = pygame.transform.scale(btnvit, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
 btncolo = pygame.transform.scale(btncolo, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
+popup = pygame.transform.scale(popup, (infoObject.current_w, infoObject.current_h))
+
 #---------------------------Function-----------------------------------------------#
 
 def init_players(list):
@@ -93,22 +98,25 @@ def init_players(list):
 def info_display_on_click(event, disp_base_info, x1, y1, pop_up_id):
     if disp_base_info != True:
         i = 0
-        while i < 4 and disp_base_info != True: 
-            x2, y2 = players[i].bases.posx + 45, players[i].bases.posy + 100
+        while i < len(all_planete) and disp_base_info != True: 
+            x2, y2 = infoObject.current_w * (all_planete[i].x + (all_planete[i].long / 2)) / 1600, infoObject.current_h  * (all_planete[i].y + (all_planete[i].larg / 2)) / 1000
             distance = math.hypot(x1 - x2, y1 - y2)
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1 and distance <= 45:
+                if event.button == 1 and distance <= all_planete[i].long / 2:
                     disp_base_info = True
                     pop_up_id = i
             i += 1
     else:
         i = 0
-        while i < 4 and disp_base_info != False:
-            x2, y2 = players[i].bases.posx + 45, players[i].bases.posy + 100
-            players[i].bases.posx + 45, players[i].bases.posy + 100
+        tmp1, tmp2 = infoObject.current_w * 1380 / 1920, infoObject.current_h * 163 / 1080
+        tmpdist = math.hypot(x1- tmp1, y1 - tmp2)
+        if event.type == pygame.MOUSEBUTTONDOWN and (event.button == 1 and tmpdist <= infoObject.current_w * 24 / 1920):
+            disp_base_info = False
+        while i < len(all_planete) and disp_base_info != False:
+            x2, y2 = infoObject.current_w * (all_planete[i].x + (all_planete[i].long / 2)) / 1600, infoObject.current_h  * (all_planete[i].y + (all_planete[i].larg / 2)) / 1000
             distance = math.hypot(x1 - x2, y1 - y2)
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1 and distance <= 45:
+                if event.button == 1 and distance <= infoObject.current_w * (all_planete[i].long / 2) / 1600:
                     disp_base_info = False
             i += 1
     return disp_base_info, pop_up_id
@@ -134,7 +142,7 @@ def print_aire(all, id):
 
 def add_planete_colonise(player, all_planete, turn):
     for i in range (0, 35):
-        if all_planete[i].colonise == turn:
+        if all_planete[i].colonise == turn + 1:
             players[turn].gold += all_planete[i].gold
             players[turn].oil += all_planete[i].oil
             players[turn].iron += all_planete[i].iron
@@ -155,6 +163,14 @@ def bouton_fusee(player, x, y):
             price_fusee_shild[0] *= 5
             price_fusee_shild[1] *= 5
 
+def buy_planete(event, player, planete):
+    x, y = pygame.mouse.get_pos()
+    if event.type == pygame.MOUSEBUTTONDOWN :
+        if event.button == 1:# and x > infoObject.current_w * 1500 / 1600 and x < infoObject.current_w * (1500 + 93) / 1600 and y > infoObject.current_h * 903 / 1000 and y < infoObject.current_h * (903 + 91) / 1000:
+            if planete.colonise == 0:
+                planete.colonise == player
+
+
 #---------------------------/function----------------------------------------------#
 list = menu.display_menu(screen, menu_launch)
 if (len(list) == 4):
@@ -164,8 +180,7 @@ players = init_players(list)
 clock_turn = pygame.time.get_ticks()
 seconds = ""
 disp_base_info = False
-
-players[0] =   add_planete_colonise(players, all_planete, 0)
+players[0] = add_planete_colonise(players, all_planete, 0)
 while launched:    
     pygame.display.init()
     x1, y1 = pygame.mouse.get_pos()
@@ -181,7 +196,7 @@ while launched:
     screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
     if disp_base_info:
-        screen.blit(popup, (players[pop_up_id].bases.posx, players[pop_up_id].bases.posy))
+        screen.blit(popup, (0, 0))
     for event in pygame.event.get():
         disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
