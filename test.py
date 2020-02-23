@@ -114,14 +114,19 @@ def create_texture(pl, oil, gold, iron):
     screen.blit(nb_iron_text, (infoObject.current_w * 260 / 1600, infoObject.current_h * 910 / 1000))
     screen.blit(oil, (infoObject.current_w * 360 / 1600, infoObject.current_h * 900 / 1000))
     screen.blit(nb_oil_text, (infoObject.current_w * 430 / 1600, infoObject.current_h * 910 / 1000))
+
+def print_aire(all, id):
+    for i in range(len(all)):
+        if all[i].colonise == id + 1:
+            pygame.draw.circle(screen, (250,0,0), [int(infoObject.current_w * (all[i].x + (all[i].long / 2)) / 1600), int(infoObject.current_h * (all[i].y + all[i].larg / 2) / 1000)], int(infoObject.current_w * (all[i].long / 2 + 10) / 1600), 2)
+
 #---------------------------/function---------------------------------------------
 
 #---------------------------/function----------------------------------------------#
-
 list = menu.display_menu(screen, menu_launch)
 if (len(list) == 4):
     launched = True
-
+all_planete = planete.init_planete()
 players = init_players(list)
 clock_turn = pygame.time.get_ticks()
 seconds = ""
@@ -132,7 +137,7 @@ while launched:
     x1, y1 = pygame.mouse.get_pos()
     screen.blit(image, (0,0))
     screen.blit(overlay[turn], (0, 0))
-
+    print_aire(all_planete, turn)
     screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
     create_texture(players[turn], oil, gold, iron)
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))

@@ -17,7 +17,7 @@ class planete:
         self.y = 0
         self.long = 0
         self.larg = 0
-        self.colonise = 0
+        self.colonise = 1
 
 class bases:
     def __init__(self):
