@@ -26,6 +26,7 @@ def sendfusee(fusee, xplanete1, yplanete1, xplanete2, yplanete2):
     anim = 0
     #int fusée pour que l'animation se fasse
     while anim == 1:
+        anim = 0
         if endfusee(xfusee, yfusee, xplanete2, yplanete2) == 0:
             fusee = 0
         else:
@@ -34,9 +35,8 @@ def sendfusee(fusee, xplanete1, yplanete1, xplanete2, yplanete2):
 
             pygame.transform.rotate(fusee.sprite, angle) #rotate sprite en fonction de l'angle
             distancepixel = [getdistance(xplanete1, yplanete1, xplanete2, yplanete2)]
-            print(distancepixel)
+            #print(distancepixel)
             #convertir la distance en coordonnées
-            
             #drwlafusée
     return 0
             
