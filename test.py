@@ -86,22 +86,25 @@ def init_players(list):
 def info_display_on_click(event, disp_base_info, x1, y1, pop_up_id):
     if disp_base_info != True:
         i = 0
-        while i < 4 and disp_base_info != True: 
-            x2, y2 = players[i].bases.posx + 45, players[i].bases.posy + 100
+        while i < len(all_planete) and disp_base_info != True: 
+            x2, y2 = infoObject.current_w * (all_planete[i].x + (all_planete[i].long / 2)) / 1600, infoObject.current_h  * (all_planete[i].y + (all_planete[i].larg / 2)) / 1000
             distance = math.hypot(x1 - x2, y1 - y2)
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1 and distance <= 45:
+                if event.button == 1 and distance <= all_planete[i].long / 2:
                     disp_base_info = True
                     pop_up_id = i
             i += 1
     else:
         i = 0
-        while i < 4 and disp_base_info != False:
-            x2, y2 = players[i].bases.posx + 45, players[i].bases.posy + 100
-            players[i].bases.posx + 45, players[i].bases.posy + 100
+        tmp1, tmp2 = infoObject.current_w * 1380 / 1920, infoObject.current_h * 163 / 1080
+        tmpdist = math.hypot(x1- tmp1, y1 - tmp2)
+        if event.type == pygame.MOUSEBUTTONDOWN and (event.button == 1 and tmpdist <= infoObject.current_w * 24 / 1920):
+            disp_base_info = False
+        while i < len(all_planete) and disp_base_info != False:
+            x2, y2 = infoObject.current_w * (all_planete[i].x + (all_planete[i].long / 2)) / 1600, infoObject.current_h  * (all_planete[i].y + (all_planete[i].larg / 2)) / 1000
             distance = math.hypot(x1 - x2, y1 - y2)
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1 and distance <= 45:
+                if event.button == 1 and distance <= infoObject.current_w * (all_planete[i].long / 2) / 1600:
                     disp_base_info = False
             i += 1
     return disp_base_info, pop_up_id
@@ -156,7 +159,7 @@ while launched:
     screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
     if disp_base_info:
-        screen.blit(popup, (players[pop_up_id].bases.posx, players[pop_up_id].bases.posy))
+        screen.blit(popup, (0, 0))
     for event in pygame.event.get():
         disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
