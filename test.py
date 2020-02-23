@@ -117,7 +117,6 @@ def create_texture(pl, oil, gold, iron):
 
 #---------------------------/function----------------------------------------------#
 
-planete.random_planete(1, 1, 1, 1, 1)
 list = menu.display_menu(screen, menu_launch)
 if (len(list) == 4):
     launched = True
