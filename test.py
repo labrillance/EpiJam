@@ -57,11 +57,6 @@ oil = pygame.transform.scale(oil, (round(infoObject.current_w * 70 / 1600), roun
 
 #---------------------------Function-----------------------------------------------#
 
-def player_stuff(player, ):
-    for i in range (0, 35):
-        if 
-
-
 def init_players(list):
     i = 0
     players = []
@@ -138,12 +133,14 @@ while launched:
     x1, y1 = pygame.mouse.get_pos()
     screen.blit(image, (0,0))
     screen.blit(overlay[turn], (0, 0))
-<<<<<<< HEAD
 
-    player[turn] = player_stuff(player[turn], planete)
-=======
+    for i in range (0, 35):
+        if all_planete[i].colonise == turn:
+            players[turn].gold += all_planete[i].gold
+            players[turn].oil += all_planete[i].oil
+            players[turn].iron += all_planete[i].iron
+
     print_aire(all_planete, turn)
->>>>>>> bb92f349a1c613e34761c5c9c7566af2b0d7c4d2
     screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
     create_texture(players[turn], oil, gold, iron)
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))

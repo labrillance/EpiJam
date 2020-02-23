@@ -41,6 +41,7 @@ def init_planete():
     planete.append(random_planete(1, 1263, 339, 65, 63, "Cezuno"))
     planete.append(random_planete(1, 950, 771, 62, 62, "Sailia"))
     planete.append(random_planete(1, 773, 658, 64, 62, "R2D2"))
+
     return (planete)
 
 def random_planete(taille, posx, posy, long, larg, name):
