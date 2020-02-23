@@ -150,7 +150,11 @@ def buy_planete(event, player, planete):
         if event.button == 1:# and x > infoObject.current_w * 1500 / 1600 and x < infoObject.current_w * (1500 + 93) / 1600 and y > infoObject.current_h * 903 / 1000 and y < infoObject.current_h * (903 + 91) / 1000:
             if planete.colonise == 0:
                 planete.colonise == player
-
+        if event.button == 1 and x > infoObject.current_w * 1233 / 1920 and x < infoObject.current_w * (1233 + 192) / 1920 and y > infoObject.current_h * 771 / 1080 and y < infoObject.current_h * (771 + 78) / 1080:
+            if all_planete[planete].colonise == 0:
+                if (players[player].gold > all_planete[planete].valeur):
+                    players[player].gold -= all_planete[planete].valeur
+                    all_planete[planete].colonise = player + 1
 def upgrade_fusee(event, x, y, player, turn):
     if event.type == pygame.MOUSEBUTTONDOWN:
        if x > infoObject.current_w * 550 / 1600 and x < infoObject.current_w  * 670 / 1600 and y > infoObject.current_h * 865 / 1000 and y < infoObject.current_h * 985 / 1000 and player[turn].gold - player[turn].price_fusee_atk[0] > 0 and player[turn].iron - player[turn].price_fusee_atk[1] > 0:
@@ -159,11 +163,6 @@ def upgrade_fusee(event, x, y, player, turn):
             player[turn].fusee.atk += 1
             player[turn].price_fusee_atk[0] *= 2
             player[turn].price_fusee_atk[1] *= 2
-        if event.button == 1 and x > infoObject.current_w * 1233 / 1920 and x < infoObject.current_w * (1233 + 192) / 1920 and y > infoObject.current_h * 771 / 1080 and y < infoObject.current_h * (771 + 78) / 1080:
-            if all_planete[planete].colonise == 0:
-                if (players[player].gold > all_planete[planete].valeur):
-                    players[player].gold -= all_planete[planete].valeur
-                    all_planete[planete].colonise = player + 1
 
 def print_info_on_popup(planete):
     screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
@@ -219,7 +218,6 @@ while launched:
             else:
                 turn = 0
             players[turn] = add_planete_colonise(players, all_planete, turn)
-        bouton_fusee(players[turn], x1, y1)
     if sec <= 0:
         clock_turn = pygame.time.get_ticks()
         if turn != 3:
