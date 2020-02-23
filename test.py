@@ -23,12 +23,10 @@ icon = pygame.image.load("textures/icon_game.png")
 image = pygame.image.load("textures/tets.jpg")
 overlay = [pygame.image.load("textures/overlayplayer1.png"), pygame.image.load("textures/overlayplayer2.png"), pygame.image.load("textures/overlayplayer3.png"), pygame.image.load("textures/overlayplayer4.png")]
 popup = pygame.image.load("textures/popup.png")
-little1 = pygame.image.load("textures/little1.png")
-middle1 = pygame.image.load("textures/middle1.png")
-big = pygame.image.load("textures/big.png")
 gold = pygame.image.load("textures/icon_gold.png")
 iron = pygame.image.load("textures/icon_iron.png")
 oil = pygame.image.load("textures/oil_icon.png")
+fusee = [pygame.image.load("textures/fusee.png"), pygame.image.load("textures/fusee.png"), pygame.image.load("textures/fusee.png"), pygame.image.load("textures/fusee.png")]
 
 #---------------------------FONT---------------------------------------------------#
 
@@ -53,9 +51,6 @@ pygame.display.set_caption("Planet Star")
 
 image = pygame.transform.scale(image, (infoObject.current_w, infoObject.current_h))
 overlay = [pygame.transform.scale(overlay[0], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[1], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[2], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[3], (infoObject.current_w, infoObject.current_h))]
-little1 = pygame.transform.scale(little1, (round(infoObject.current_w * 60 / 1920), round(infoObject.current_h * 60 / 1080)))
-middle1 = pygame.transform.scale(middle1, (round(infoObject.current_w * 190 / 1920), round(infoObject.current_h * 173 / 1080)))
-big = pygame.transform.scale(big, (round(infoObject.current_w * 180 / 1980), round(infoObject.current_h * 180 / 1020)))
 gold = pygame.transform.scale(gold, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
 iron = pygame.transform.scale(iron, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
 oil = pygame.transform.scale(oil, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
@@ -108,12 +103,12 @@ def create_texture(pl, oil, gold, iron):
     nb_gold_text = font.render(str(pl.gold), True, (0, 128, 0))
     nb_oil_text = font.render(str(pl.oil), True, (0, 128, 0))
     nb_iron_text = font.render(str(pl.iron), True, (0, 128, 0))
-    screen.blit(gold, (infoObject.current_w * 20 / 1600, infoObject.current_h * 900 / 1000))
-    screen.blit(nb_gold_text, (infoObject.current_w * 90 / 1600, infoObject.current_h * 910 / 1000))
-    screen.blit(iron, (infoObject.current_w * 190 / 1600, infoObject.current_h * 900 / 1000))
-    screen.blit(nb_iron_text, (infoObject.current_w * 260 / 1600, infoObject.current_h * 910 / 1000))
-    screen.blit(oil, (infoObject.current_w * 360 / 1600, infoObject.current_h * 900 / 1000))
-    screen.blit(nb_oil_text, (infoObject.current_w * 430 / 1600, infoObject.current_h * 910 / 1000))
+    screen.blit(gold, (round(infoObject.current_w * 20 / 1600), round(infoObject.current_h * 900 / 1000)))
+    screen.blit(nb_gold_text, (round(infoObject.current_w * 90 / 1600), round(infoObject.current_h * 910 / 1000)))
+    screen.blit(iron, (round(infoObject.current_w * 190 / 1600), round(infoObject.current_h * 900 / 1000)))
+    screen.blit(nb_iron_text, (round(infoObject.current_w * 260 / 1600), round(infoObject.current_h * 910 / 1000)))
+    screen.blit(oil, (round(infoObject.current_w * 360 / 1600), round(infoObject.current_h * 900 / 1000)))
+    screen.blit(nb_oil_text, (round(infoObject.current_w * 430 / 1600), round(infoObject.current_h * 910 / 1000)))
 
 def print_aire(all, id):
     for i in range(len(all)):
@@ -121,6 +116,7 @@ def print_aire(all, id):
             pygame.draw.circle(screen, (250,0,0), [int(infoObject.current_w * (all[i].x + (all[i].long / 2)) / 1600), int(infoObject.current_h * (all[i].y + all[i].larg / 2) / 1000)], int(infoObject.current_w * (all[i].long / 2 + 10) / 1600), 2)
 
 #---------------------------/function---------------------------------------------
+
 
 #---------------------------/function----------------------------------------------#
 list = menu.display_menu(screen, menu_launch)
