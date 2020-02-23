@@ -29,6 +29,7 @@ big = pygame.image.load("textures/big.png")
 gold = pygame.image.load("textures/icon_gold.png")
 iron = pygame.image.load("textures/icon_iron.png")
 oil = pygame.image.load("textures/oil_icon.png")
+fusee = [pygame.image.load("textures/fusee.png"), pygame.image.load("textures/fusee.png"), pygame.image.load("textures/fusee.png"), pygame.image.load("textures/fusee.png")]
 
 #---------------------------FONT---------------------------------------------------#
 
@@ -117,7 +118,6 @@ def create_texture(pl, oil, gold, iron):
 
 #---------------------------/function----------------------------------------------#
 
-planete.random_planete(1, 1, 1, 1, 1)
 list = menu.display_menu(screen, menu_launch)
 if (len(list) == 4):
     launched = True
