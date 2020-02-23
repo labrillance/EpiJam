@@ -201,12 +201,11 @@ while launched:
     screen.blit(overlay[turn], (0, 0))
 
     print_aire(all_planete, turn)
-    screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
+    screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 861 / 1000))
     create_texture(players[turn], oil, gold, iron, all_planete)
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))
     sec = int(seconds)
-    seconds = font.render(seconds, True, (0,0,0))
-    screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
+    seconds = info_font.render(seconds, True, (0,0,0))
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
     if disp_base_info:
         screen.blit(popup, (0, 0))
