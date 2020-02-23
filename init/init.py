@@ -8,6 +8,9 @@ class player:
         self.bases = bases()
         self.fusee = fusee()
         self.own = []
+        self.price_fusee_atk = []
+        self.price_fusee_atk.append(10)
+        self.price_fusee_atk.append(50)
 
 class planete:
     def __init__(self):
