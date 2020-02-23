@@ -6,6 +6,7 @@ import widget
 import planete
 import init.init as classes
 import math
+import fusee
 
 pygame.init()
 
@@ -26,7 +27,11 @@ popup = pygame.image.load("textures/popup.png")
 gold = pygame.image.load("textures/icon_gold.png")
 iron = pygame.image.load("textures/icon_iron.png")
 oil = pygame.image.load("textures/oil_icon.png")
-fusee = [pygame.image.load("textures/fusee.png"), pygame.image.load("textures/fusee.png"), pygame.image.load("textures/fusee.png"), pygame.image.load("textures/fusee.png")]
+fusee = pygame.image.load("textures/fusee.png")
+btnatk = pygame.image.load("textures/btnatk+.png")
+btndef = pygame.image.load("textures/btndef+.png")
+btnvit = pygame.image.load("textures/btnvit+.png")
+btncolo = pygame.image.load("textures/btncolo.png")
 
 #---------------------------FONT---------------------------------------------------#
 
@@ -42,6 +47,8 @@ menu_launch = True
 turn = 0
 print_inf = 0
 color = [(33, 129, 213), (243, 47, 47), (72, 213, 33), (219, 0, 255)]
+send_fusee = 0
+
 #---------------------------PYGAME.DISPLAY-----------------------------------------#
 
 pygame.display.set_icon(icon)
@@ -120,7 +127,7 @@ def print_aire(all, id):
 
 def add_planete_colonise(player, all_planete, turn):
     for i in range (0, 35):
-        if all_planete[i].colonise == turn:
+        if all_planete[i].colonise == turn + 1:
             players[turn].gold += all_planete[i].gold
             players[turn].oil += all_planete[i].oil
             players[turn].iron += all_planete[i].iron
@@ -136,7 +143,7 @@ clock_turn = pygame.time.get_ticks()
 seconds = ""
 disp_base_info = False
 
-players[0] =   add_planete_colonise(players, all_planete, 0)
+players[0] = add_planete_colonise(players, all_planete, 0)
 while launched:    
     pygame.display.init()
     x1, y1 = pygame.mouse.get_pos()
@@ -171,4 +178,9 @@ while launched:
         else:
             turn = 0
         players[turn] = add_planete_colonise(players, all_planete, turn)
+    if send_fusee == 1:
+        send_fusee = sendfusee()
+    pygame.mixer.init()
+    pygame.mixer.music.load("music/stranger.mp3")
+    pygame.mixer.music.play(5)
     pygame.display.flip()

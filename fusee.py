@@ -6,12 +6,7 @@ import math
 #---------------------------------------------------------
 
 def init_fusée():
-    fusee = []
 
-    fusee[0]
-    fusee[1]
-    fusee[2]
-    fusee[3]
 
 def getdistance(xplanete1, yplanete1, xplanete2, yplanete2):
     xdist = xplanete1 - xplanete2
@@ -30,9 +25,10 @@ def endfusee(xfusee, yfusee, xplanete2, yplanete2):
 def getangle(xplanete1, yplanete1, xplanete2, yplanete2):
     return math.atan((yplanete1 - yplanete2) / (xplanete1 - xplanete2))
 
-def send_fusée(fusee, xplanete1, yplanete1, xplanete2, yplanete2):
+def sendfusee(fusee, xplanete1, yplanete1, xplanete2, yplanete2, send_fusee):
     xfusee = 0  #inserer classe fusee posx 
     yfusee = 0  #inserer classe fusee posy
+    
     #int fusée pour que l'animation se fasse
     if fusee == 1:
         if endfusee(xfusee, yfusee, xplanete2, yplanete2) == 0:
@@ -46,5 +42,6 @@ def send_fusée(fusee, xplanete1, yplanete1, xplanete2, yplanete2):
             distancepixel = getdistance(xplanete1, yplanete1, xplanete2, yplanete2)
             #convertir la distance en coordonnées
             #drwlafusée
+    return 0
             
 #---------------------------------------------------------
