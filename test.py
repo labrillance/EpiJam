@@ -41,7 +41,7 @@ pop_up_id =-1
 menu_launch = True
 turn = 0
 print_inf = 0
-
+color = [(33, 129, 213), (243, 47, 47), (72, 213, 33), (219, 0, 255)]
 #---------------------------PYGAME.DISPLAY-----------------------------------------#
 
 pygame.display.set_icon(icon)
@@ -104,16 +104,16 @@ def create_texture(pl, oil, gold, iron):
     nb_oil_text = font.render(str(pl.oil), True, (0, 128, 0))
     nb_iron_text = font.render(str(pl.iron), True, (0, 128, 0))
     screen.blit(gold, (round(infoObject.current_w * 20 / 1600), round(infoObject.current_h * 900 / 1000)))
-    screen.blit(nb_gold_text, (round(infoObject.current_w * 90 / 1600), round(infoObject.current_h * 910 / 1000)))
+    screen.blit(nb_gold_text, (round(infoObject.current_w * 100 / 1600), round(infoObject.current_h * 920 / 1000)))
     screen.blit(iron, (round(infoObject.current_w * 190 / 1600), round(infoObject.current_h * 900 / 1000)))
-    screen.blit(nb_iron_text, (round(infoObject.current_w * 260 / 1600), round(infoObject.current_h * 910 / 1000)))
+    screen.blit(nb_iron_text, (round(infoObject.current_w * 270 / 1600), round(infoObject.current_h * 920 / 1000)))
     screen.blit(oil, (round(infoObject.current_w * 360 / 1600), round(infoObject.current_h * 900 / 1000)))
-    screen.blit(nb_oil_text, (round(infoObject.current_w * 430 / 1600), round(infoObject.current_h * 910 / 1000)))
+    screen.blit(nb_oil_text, (round(infoObject.current_w * 440 / 1600), round(infoObject.current_h * 920 / 1000)))
 
 def print_aire(all, id):
     for i in range(len(all)):
-        if all[i].colonise == id + 1:
-            pygame.draw.circle(screen, (250,0,0), [int(infoObject.current_w * (all[i].x + (all[i].long / 2)) / 1600), int(infoObject.current_h * (all[i].y + all[i].larg / 2) / 1000)], int(infoObject.current_w * (all[i].long / 2 + 10) / 1600), 2)
+        if all[i].colonise != 0:
+            pygame.draw.circle(screen, color[all[i].colonise - 1], [int(infoObject.current_w * (all[i].x + (all[i].long / 2)) / 1600), int(infoObject.current_h * (all[i].y + all[i].larg / 2) / 1000)], int(infoObject.current_w * (all[i].long / 2 + 10) / 1600), 2)
 
 def add_planete_colonise(player, all_planete, turn):
     for i in range (0, 35):
