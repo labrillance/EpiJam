@@ -220,7 +220,7 @@ while launched:
     create_texture(players[turn], oil, gold, iron, all_planete)
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))
     sec = int(seconds)
-    seconds = info_font.render(seconds, True, (0,0,0))
+    seconds = info_font.render(seconds, True, (255,255,255))
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
     if disp_base_info:
         screen.blit(popup, (0, 0))
