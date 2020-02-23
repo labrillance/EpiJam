@@ -26,10 +26,10 @@ def init_planete():
     planete.append(random_planete(1, 579, 732, 63, 65, "BB8"))
     planete.append(random_planete(1, 647, 83, 63, 65, "Lodoth"))
     planete.append(random_planete(3, 701, 393, 180, 180, "Mudrehiri"))
-    planete.append(random_planete(0, 271, 33, 96, 92, "TERRA1"))
-    planete.append(random_planete(-1, 257, 730, 92, 93, "TERR2"))
-    planete.append(random_planete(-2, 1186, 27, 96, 94, "TERRA3"))
-    planete.append(random_planete(-3, 1187, 718, 90, 94, "TERRA4"))
+    planete.append(random_planete(-1, 271, 33, 96, 92, "TERRA1"))
+    planete.append(random_planete(-2, 257, 730, 92, 93, "TERR2"))
+    planete.append(random_planete(-3, 1186, 27, 96, 94, "TERRA3"))
+    planete.append(random_planete(-4, 1187, 718, 90, 94, "TERRA4"))
     planete.append(random_planete(1, 413, 201, 68, 65, "Gisiuhiri"))
     planete.append(random_planete(2, 66, 368, 141, 143, "Agora"))
     planete.append(random_planete(1, 334, 390, 66, 67, "Nion"))
@@ -39,7 +39,7 @@ def init_planete():
     planete.append(random_planete(2, 1395, 361, 148, 146, "Team JUL"))
     planete.append(random_planete(1, 1115, 497, 64, 63, "Treaclite"))
     planete.append(random_planete(1, 1263, 339, 65, 63, "Cezuno"))
-    planete.append(random_planete(1, 950, 771, 62, 62, "Sailia"))
+    planete.append(random_planete(1, 950, 710, 62, 62, "Sailia"))
     planete.append(random_planete(1, 773, 658, 64, 62, "R2D2"))
     return (planete)
 
@@ -50,6 +50,7 @@ def random_planete(taille, posx, posy, long, larg, name):
     result.y = posy
     result.long = long
     result.larg = larg
+    result.colonise = 0;
     if taille < 0:
         result.gold = 35
         result.oil = 130
