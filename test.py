@@ -196,6 +196,8 @@ def print_info_on_popup(planete):
     desc = font.render("Description :", True, (0, 0, 0))
 
     if planete.colonise > 0:
+        if planete.colonise -1 != turn:
+            screen.blit(button_attack, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
         pr = list[planete.colonise - 1]
         prop = font.render(pr, True, color[planete.colonise - 1])
         screen.blit(prop, (infoObject.current_w * 530 / 1920, infoObject.current_h * 210 / 1080))
