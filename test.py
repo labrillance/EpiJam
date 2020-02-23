@@ -54,9 +54,6 @@ pygame.display.set_caption("Planet Star")
 
 image = pygame.transform.scale(image, (infoObject.current_w, infoObject.current_h))
 overlay = [pygame.transform.scale(overlay[0], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[1], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[2], (infoObject.current_w, infoObject.current_h)), pygame.transform.scale(overlay[3], (infoObject.current_w, infoObject.current_h))]
-little1 = pygame.transform.scale(little1, (round(infoObject.current_w * 60 / 1920), round(infoObject.current_h * 60 / 1080)))
-middle1 = pygame.transform.scale(middle1, (round(infoObject.current_w * 190 / 1920), round(infoObject.current_h * 173 / 1080)))
-big = pygame.transform.scale(big, (round(infoObject.current_w * 180 / 1980), round(infoObject.current_h * 180 / 1020)))
 gold = pygame.transform.scale(gold, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
 iron = pygame.transform.scale(iron, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
 oil = pygame.transform.scale(oil, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
@@ -115,7 +112,6 @@ def create_texture(pl, oil, gold, iron):
     screen.blit(nb_iron_text, (infoObject.current_w * 260 / 1600, infoObject.current_h * 910 / 1000))
     screen.blit(oil, (infoObject.current_w * 360 / 1600, infoObject.current_h * 900 / 1000))
     screen.blit(nb_oil_text, (infoObject.current_w * 430 / 1600, infoObject.current_h * 910 / 1000))
-#---------------------------/function---------------------------------------------
 
 #---------------------------/function----------------------------------------------#
 
