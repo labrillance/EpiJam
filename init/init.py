@@ -6,6 +6,7 @@ class player:
         self.oil = 0
         self.iron = 0
         self.bases = bases()
+        self.own = []
 
 class planete:
     def __init__(self):
