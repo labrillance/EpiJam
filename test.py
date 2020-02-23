@@ -36,7 +36,9 @@ btndef = pygame.image.load("textures/btndef+.png")
 btnvit = pygame.image.load("textures/btnvit+.png")
 btncolo = pygame.image.load("textures/btncolo.png")
 button_buy = pygame.image.load("textures/buy.png")
+button_attack = pygame.image.load("textures/attack.png")
 overlay_com = pygame.image.load("./textures/overlay.png")
+
 #---------------------------FONT---------------------------------------------------#
 
 font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
@@ -77,6 +79,7 @@ btnatk = pygame.transform.scale(btnatk, (round(infoObject.current_w * 120 / 1600
 btncolo = pygame.transform.scale(btncolo, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
 popup = pygame.transform.scale(popup, (infoObject.current_w, infoObject.current_h))
 button_buy = pygame.transform.scale(button_buy, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
+button_attack = pygame.transform.scale(button_attack, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
 overlay_com = pygame.transform.scale(overlay_com, (infoObject.current_w, infoObject.current_h))
 
 #---------------------------Function-----------------------------------------------#
@@ -178,7 +181,6 @@ def upgrade_fusee(event, x, y, player, turn):
             player[turn].price_fusee_atk[1] *= 2
 
 def print_info_on_popup(planete):
-    screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
     p = classes.info
     p.name = info_font.render(planete.name, True, (255, 255, 255))
     p.gold = info_font.render(str(planete.gold), True, (255, 255, 255))
