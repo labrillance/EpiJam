@@ -9,6 +9,7 @@ import math
 import fusee
 
 pygame.init()
+pygame.mixer.init()
 
 #---------------------------INITIALISATION WINDOW---------------------------------#
 
@@ -143,6 +144,7 @@ players = init_players(list)
 clock_turn = pygame.time.get_ticks()
 seconds = ""
 disp_base_info = False
+pygame.mixer.music.load("music/stranger.mp3")
 
 players[0] = add_planete_colonise(players, all_planete, 0)
 while launched:    
@@ -179,9 +181,7 @@ while launched:
         else:
             turn = 0
         players[turn] = add_planete_colonise(players, all_planete, turn)
-    #if send_fusee == 1:
-
-    pygame.mixer.init()
-    pygame.mixer.music.load("music/stranger.mp3")
+    '''if send_fusee == 1:
+        send_fusee = sendfusee()'''
     pygame.mixer.music.play(5)
     pygame.display.flip()
