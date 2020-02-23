@@ -61,6 +61,7 @@ overlay = [pygame.transform.scale(overlay[0], (infoObject.current_w, infoObject.
 gold = pygame.transform.scale(gold, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
 iron = pygame.transform.scale(iron, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
 oil = pygame.transform.scale(oil, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
+popup = pygame.transform.scale(popup, (infoObject.current_w, infoObject.current_h))
 
 #---------------------------Function-----------------------------------------------#
 
@@ -178,6 +179,4 @@ while launched:
         else:
             turn = 0
         players[turn] = add_planete_colonise(players, all_planete, turn)
-    '''if send_fusee == 1:
-        send_fusee = sendfusee()'''
     pygame.display.flip()
