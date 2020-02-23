@@ -115,8 +115,13 @@ def print_aire(all, id):
         if all[i].colonise == id + 1:
             pygame.draw.circle(screen, (250,0,0), [int(infoObject.current_w * (all[i].x + (all[i].long / 2)) / 1600), int(infoObject.current_h * (all[i].y + all[i].larg / 2) / 1000)], int(infoObject.current_w * (all[i].long / 2 + 10) / 1600), 2)
 
-#---------------------------/function---------------------------------------------
-
+def add_planete_colonise(player, all_planete, turn):
+    for i in range (0, 35):
+        if all_planete[i].colonise == turn:
+            players[turn].gold += all_planete[i].gold
+            players[turn].oil += all_planete[i].oil
+            players[turn].iron += all_planete[i].iron
+    return players[turn]
 
 #---------------------------/function----------------------------------------------#
 list = menu.display_menu(screen, menu_launch)
@@ -128,17 +133,12 @@ clock_turn = pygame.time.get_ticks()
 seconds = ""
 disp_base_info = False
 
+players[0] =   add_planete_colonise(players, all_planete, 0)
 while launched:    
     pygame.display.init()
     x1, y1 = pygame.mouse.get_pos()
     screen.blit(image, (0,0))
     screen.blit(overlay[turn], (0, 0))
-
-    for i in range (0, 35):
-        if all_planete[i].colonise == turn:
-            players[turn].gold += all_planete[i].gold
-            players[turn].oil += all_planete[i].oil
-            players[turn].iron += all_planete[i].iron
 
     print_aire(all_planete, turn)
     screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
@@ -160,10 +160,12 @@ while launched:
                 turn += 1
             else:
                 turn = 0
+            players[turn] = add_planete_colonise(players, all_planete, turn)
     if sec <= 0:
         clock_turn = pygame.time.get_ticks()
         if turn != 3:
             turn += 1
         else:
             turn = 0
+        players[turn] = add_planete_colonise(players, all_planete, turn)
     pygame.display.flip()
