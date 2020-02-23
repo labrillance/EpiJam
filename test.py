@@ -103,12 +103,12 @@ def create_texture(pl, oil, gold, iron):
     nb_gold_text = font.render(str(pl.gold), True, (0, 128, 0))
     nb_oil_text = font.render(str(pl.oil), True, (0, 128, 0))
     nb_iron_text = font.render(str(pl.iron), True, (0, 128, 0))
-    screen.blit(gold, (infoObject.current_w * 20 / 1600, infoObject.current_h * 900 / 1000))
-    screen.blit(nb_gold_text, (infoObject.current_w * 90 / 1600, infoObject.current_h * 910 / 1000))
-    screen.blit(iron, (infoObject.current_w * 190 / 1600, infoObject.current_h * 900 / 1000))
-    screen.blit(nb_iron_text, (infoObject.current_w * 260 / 1600, infoObject.current_h * 910 / 1000))
-    screen.blit(oil, (infoObject.current_w * 360 / 1600, infoObject.current_h * 900 / 1000))
-    screen.blit(nb_oil_text, (infoObject.current_w * 430 / 1600, infoObject.current_h * 910 / 1000))
+    screen.blit(gold, (round(infoObject.current_w * 20 / 1600), round(infoObject.current_h * 900 / 1000)))
+    screen.blit(nb_gold_text, (round(infoObject.current_w * 90 / 1600), round(infoObject.current_h * 910 / 1000)))
+    screen.blit(iron, (round(infoObject.current_w * 190 / 1600), round(infoObject.current_h * 900 / 1000)))
+    screen.blit(nb_iron_text, (round(infoObject.current_w * 260 / 1600), round(infoObject.current_h * 910 / 1000)))
+    screen.blit(oil, (round(infoObject.current_w * 360 / 1600), round(infoObject.current_h * 900 / 1000)))
+    screen.blit(nb_oil_text, (round(infoObject.current_w * 430 / 1600), round(infoObject.current_h * 910 / 1000)))
 
 #---------------------------/function----------------------------------------------#
 
