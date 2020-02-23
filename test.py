@@ -36,7 +36,7 @@ btncolo = pygame.image.load("textures/btncolo.png")
 #---------------------------FONT---------------------------------------------------#
 
 font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
-
+info_font = pygame.font.Font("./fonts/Moonhouse-yE5M.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
 #---------------------------init variable and GLOBAL-------------------------------#
 
 global launched
@@ -141,7 +141,17 @@ def buy_planete(event, player, planete):
             if planete.colonise == 0:
                 planete.colonise == player
 
+def print_info_on_popup(planete):
+    #screen.blit(button_buy, (1390, 882))
+    p = classes.info
+    p.name = info_font.render(planete.name, True, (255, 255, 255))
+    p.gold = planete.gold
+    p.iron = planete.iron
+    p.oil = planete.oil
+    name = font.render("Name :", True, (0, 0, 0))
+    desc = font.render("Description :", True, (0, 0, 0))
 
+    screen.blit(p.name, (infoObject.current_w * 530 / 1920, infoObject.current_h * 150 / 1080))
 #---------------------------/function----------------------------------------------#
 list = menu.display_menu(screen, menu_launch)
 if (len(list) == 4):
@@ -168,6 +178,7 @@ while launched:
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
     if disp_base_info:
         screen.blit(popup, (0, 0))
+        print_info_on_popup(all_planete[pop_up_id])
     for event in pygame.event.get():
         disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:

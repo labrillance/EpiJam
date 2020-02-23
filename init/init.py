@@ -37,3 +37,12 @@ class fusee:
         self.power = 0
         self.posx = 0
         self.posy = 0
+
+class info:
+    def __init__(self):
+        self.name = ""
+        self.description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        self.gold = 0
+        self.iron = 0
+        self.oil = 0
+        self.buy = 0
