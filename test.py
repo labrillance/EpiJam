@@ -32,11 +32,11 @@ btnatk = pygame.image.load("textures/button_atk.png")
 btndef = pygame.image.load("textures/btndef+.png")
 btnvit = pygame.image.load("textures/btnvit+.png")
 btncolo = pygame.image.load("textures/btncolo.png")
-
+button_buy = pygame.image.load("textures/buy.png")
 #---------------------------FONT---------------------------------------------------#
 
 font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
-
+info_font = pygame.font.Font("./fonts/Moonhouse-yE5M.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
 #---------------------------init variable and GLOBAL-------------------------------#
 
 global launched
@@ -70,6 +70,7 @@ btnatk = pygame.transform.scale(btnatk, (round(infoObject.current_w * 120 / 1600
 #btnvit = pygame.transform.scale(btnvit, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
 btncolo = pygame.transform.scale(btncolo, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
 popup = pygame.transform.scale(popup, (infoObject.current_w, infoObject.current_h))
+button_buy = pygame.transform.scale(button_buy, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
 
 #---------------------------Function-----------------------------------------------#
 
@@ -146,6 +147,7 @@ def add_planete_colonise(player, all_planete, turn):
 def buy_planete(event, player, planete):
     x, y = pygame.mouse.get_pos()
     if event.type == pygame.MOUSEBUTTONDOWN :
+<<<<<<< HEAD
         if event.button == 1:# and x > infoObject.current_w * 1500 / 1600 and x < infoObject.current_w * (1500 + 93) / 1600 and y > infoObject.current_h * 903 / 1000 and y < infoObject.current_h * (903 + 91) / 1000:
             if planete.colonise == 0:
                 planete.colonise == player
@@ -158,6 +160,26 @@ def upgrade_fusee(event, x, y, player, turn):
             player[turn].fusee.atk += 1
             player[turn].price_fusee_atk[0] *= 2
             player[turn].price_fusee_atk[1] *= 2
+=======
+        if event.button == 1 and x > infoObject.current_w * 1233 / 1920 and x < infoObject.current_w * (1233 + 192) / 1920 and y > infoObject.current_h * 771 / 1080 and y < infoObject.current_h * (771 + 78) / 1080:
+            if all_planete[planete].colonise == 0:
+                if (players[player].gold > all_planete[planete].valeur):
+                    players[player].gold -= all_planete[planete].valeur
+                    all_planete[planete].colonise = player + 1
+
+def print_info_on_popup(planete):
+    screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
+    p = classes.info
+    p.name = info_font.render(planete.name, True, (255, 255, 255))
+    p.gold = planete.gold
+    p.iron = planete.iron
+    p.oil = planete.oil
+    name = font.render("Name :", True, (0, 0, 0))
+    desc = font.render("Description :", True, (0, 0, 0))
+
+    screen.blit(p.name, (infoObject.current_w * 530 / 1920, infoObject.current_h * 150 / 1080))
+        
+>>>>>>> a3789d1b177b0f3938340bacb2a9cca96d7d3d6a
 
 #---------------------------/function----------------------------------------------#
 list = menu.display_menu(screen, menu_launch)
@@ -185,9 +207,12 @@ while launched:
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
     if disp_base_info:
         screen.blit(popup, (0, 0))
+        print_info_on_popup(all_planete[pop_up_id])
     for event in pygame.event.get():
         upgrade_fusee(event, x1, y1, players, turn)
         disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
+        if disp_base_info:
+            buy_planete(event, turn, pop_up_id)
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
             launched = False
         if (event.type == KEYDOWN and event.key == K_RETURN):
@@ -197,6 +222,10 @@ while launched:
             else:
                 turn = 0
             players[turn] = add_planete_colonise(players, all_planete, turn)
+<<<<<<< HEAD
+=======
+        bouton_fusee(players[turn], x1, y1)
+>>>>>>> a3789d1b177b0f3938340bacb2a9cca96d7d3d6a
     if sec <= 0:
         clock_turn = pygame.time.get_ticks()
         if turn != 3:
