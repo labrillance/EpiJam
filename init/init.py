@@ -50,3 +50,4 @@ class info:
         self.iron = 0
         self.oil = 0
         self.buy = 0
+        self.level = 0
