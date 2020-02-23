@@ -169,8 +169,9 @@ def buy_planete(event, player, planete):
     if event.type == pygame.MOUSEBUTTONDOWN :
         if event.button == 1 and x > infoObject.current_w * 1233 / 1920 and x < infoObject.current_w * (1233 + 192) / 1920 and y > infoObject.current_h * 771 / 1080 and y < infoObject.current_h * (771 + 78) / 1080:
             if all_planete[planete].colonise == 0:
-                all_planete[planete].colonise = player
-                player[player].gold -= all_planete[planete].valeur
+                if (players[player].gold > all_planete[planete].valeur):
+                    players[player].gold -= all_planete[planete].valeur
+                    all_planete[planete].colonise = player + 1
 
 def print_info_on_popup(planete):
     screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
@@ -213,9 +214,9 @@ while launched:
         screen.blit(popup, (0, 0))
         print_info_on_popup(all_planete[pop_up_id])
     for event in pygame.event.get():
+        disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
         if disp_base_info:
             buy_planete(event, turn, pop_up_id)
-        disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
             launched = False
         if (event.type == KEYDOWN and event.key == K_RETURN):
