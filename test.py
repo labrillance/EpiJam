@@ -144,7 +144,6 @@ clock_turn = pygame.time.get_ticks()
 seconds = ""
 disp_base_info = False
 players[0] = add_planete_colonise(players, all_planete, 0)
-pygame.mixer.music.play(5)
 while launched:    
     pygame.display.init()
     x1, y1 = pygame.mouse.get_pos()
