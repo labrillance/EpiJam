@@ -18,6 +18,7 @@ def getdistance(xplanete1, yplanete1, xplanete2, yplanete2):
     ydist = yplanete1 - yplanete2
     xdist = math.sqrt(math.pow(xdist, 2))
     ydist = math.sqrt(math.pow(ydist, 2))
+    return math.sqrt(math.pow(xdist, 2) + math.pow(ydist, 2))
 
 def endfusee():
     #if coordonnées == planete2 -> return 0
