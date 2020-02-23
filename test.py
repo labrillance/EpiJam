@@ -185,9 +185,15 @@ def print_info_on_popup(planete):
     p.iron = info_font.render(str(planete.iron), True, (255, 255, 255))
     p.oil = info_font.render(str(planete.oil), True, (255, 255, 255))
     price = info_font.render(str(planete.valeur), True, (255, 255, 255))
+    p.level = info_font.render(str(planete.defenselvl), True, (192, 192, 192))
+    level = info_font.render("Level :", True, (192, 192, 192))
     name = font.render("Name :", True, (0, 0, 0))
     desc = font.render("Description :", True, (0, 0, 0))
 
+    if planete.colonise > 0:
+        pr = list[planete.colonise - 1]
+        prop = font.render(pr, True, color[planete.colonise - 1])
+        screen.blit(prop, (infoObject.current_w * 530 / 1920, infoObject.current_h * 210 / 1080))
     screen.blit(p.name, (infoObject.current_w * 530 / 1920, infoObject.current_h * 150 / 1080))
     screen.blit(gold, (infoObject.current_w * 530 / 1920, infoObject.current_h * 550 / 1080))
     screen.blit(p.gold, (infoObject.current_w * 630 / 1920, infoObject.current_h * 555 / 1080))
@@ -196,6 +202,9 @@ def print_info_on_popup(planete):
     screen.blit(oil, (infoObject.current_w * 530 / 1920, infoObject.current_h * 750 / 1080))
     screen.blit(p.oil, (infoObject.current_w * 630 / 1920, infoObject.current_h * 755 / 1080))
     screen.blit(price, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 691 / 1080))
+    screen.blit(level, (infoObject.current_w * 1000 / 1920, infoObject.current_h * 150 / 1080))
+    screen.blit(p.level, (infoObject.current_w * 1200 / 1920, infoObject.current_h * 150 / 1080))
+    
     
     
 
@@ -233,6 +242,7 @@ while launched:
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
             launched = False
         if (event.type == KEYDOWN and event.key == K_RETURN):
+            disp_base_info = False
             clock_turn = pygame.time.get_ticks()
             if turn != 3:
                 turn += 1
@@ -241,6 +251,7 @@ while launched:
             players[turn] = add_planete_colonise(players, all_planete, turn)
     if sec <= 0:
         clock_turn = pygame.time.get_ticks()
+        disp_base_info = False
         if turn != 3:
             turn += 1
         else:
