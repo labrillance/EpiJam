@@ -213,6 +213,8 @@ while launched:
         screen.blit(popup, (0, 0))
         print_info_on_popup(all_planete[pop_up_id])
     for event in pygame.event.get():
+        if disp_base_info:
+            buy_planete(event, turn, pop_up_id)
         disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
             launched = False
@@ -223,7 +225,7 @@ while launched:
             else:
                 turn = 0
             players[turn] = add_planete_colonise(players, all_planete, turn)
-        bouton_fusee(players[turn], x1, y1)  
+        bouton_fusee(players[turn], x1, y1)
     if sec <= 0:
         clock_turn = pygame.time.get_ticks()
         if turn != 3:
