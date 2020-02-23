@@ -28,7 +28,7 @@ gold = pygame.image.load("textures/icon_gold.png")
 iron = pygame.image.load("textures/icon_iron.png")
 oil = pygame.image.load("textures/oil_icon.png")
 fusee = pygame.image.load("textures/fusee.png")
-btnatk = pygame.image.load("textures/btnatk+.png")
+btnatk = pygame.image.load("textures/button_atk.png")
 btndef = pygame.image.load("textures/btndef+.png")
 btnvit = pygame.image.load("textures/btnvit+.png")
 btncolo = pygame.image.load("textures/btncolo.png")
@@ -47,9 +47,6 @@ menu_launch = True
 turn = 0
 print_inf = 0
 color = [(33, 129, 213), (243, 47, 47), (72, 213, 33), (219, 0, 255)]
-price_fusee_atk = []
-price_fusee_atk.append(500)
-price_fusee_atk.append(600)
 price_fusee_shild = []
 price_fusee_shild.append(10)
 price_fusee_shild.append(500)
@@ -68,9 +65,9 @@ gold = pygame.transform.scale(gold, (round(infoObject.current_w * 70 / 1600), ro
 iron = pygame.transform.scale(iron, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
 oil = pygame.transform.scale(oil, (round(infoObject.current_w * 70 / 1600), round(infoObject.current_h * 70 / 1000)))
 fusee = pygame.transform.scale(fusee, (round(infoObject.current_w * 180 / 1600), round(infoObject.current_h * 90 / 1000)))
-btnatk = pygame.transform.scale(btnatk, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
-btndef = pygame.transform.scale(btndef, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
-btnvit = pygame.transform.scale(btnvit, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
+btnatk = pygame.transform.scale(btnatk, (round(infoObject.current_w * 120 / 1600), round(infoObject.current_h * 120 / 1000)))
+#btndef = pygame.transform.scale(btndef, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
+#btnvit = pygame.transform.scale(btnvit, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
 btncolo = pygame.transform.scale(btncolo, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
 popup = pygame.transform.scale(popup, (infoObject.current_w, infoObject.current_h))
 button_buy = pygame.transform.scale(button_buy, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
@@ -132,9 +129,7 @@ def create_texture(pl, oil, gold, iron, all_planete):
     screen.blit(nb_iron_text, (round(infoObject.current_w * 270 / 1600), round(infoObject.current_h * 920 / 1000)))
     screen.blit(oil, (round(infoObject.current_w * 360 / 1600), round(infoObject.current_h * 900 / 1000)))
     screen.blit(nb_oil_text, (round(infoObject.current_w * 440 / 1600), round(infoObject.current_h * 920 / 1000)))
-    screen.blit(pygame.transform.rotate(fusee, 90), (round(infoObject.current_w * 1100 / 1600), round(infoObject.current_h * 840 / 1000)))
-    screen.blit(btnatk, (round(infoObject.current_w * 1200 / 1600), round(infoObject.current_h * 880 / 1000)))
-    screen.blit(btndef, (round(infoObject.current_w * 1400 / 1600), round(infoObject.current_h * 880 / 1000)))
+    screen.blit(btnatk, (round(infoObject.current_w * 550 / 1600), round(infoObject.current_h * 865 / 1000)))
 
 def print_aire(all, id):
     for i in range(len(all)):
@@ -149,21 +144,6 @@ def add_planete_colonise(player, all_planete, turn):
             players[turn].iron += all_planete[i].iron
     return players[turn]
 
-def bouton_fusee(player, x, y):
-    if event.type == pygame.MOUSEBUTTONDOWN:
-        if x > infoObject.current_w * 1200 / 1600 and x < infoObject.current_w  * 1400 / 1600 and y > infoObject.current_h * 880 / 1000 and y < infoObject.current_h and player.gold - price_fusee_atk[0] > 0 and player.iron - price_fusee_atk[1] > 0:
-            player.gold -= price_fusee_atk[0]
-            player.iron -= price_fusee_atk[1]
-            player.fusee.atk += 1
-            price_fusee_atk[0] *= 5
-            price_fusee_atk[1] *= 5
-        if x > infoObject.current_w * 1400 / 1600 and x < infoObject.current_w and y > infoObject.current_h * 880 / 1000 and y < infoObject.current_h and player.gold - price_fusee_shild[0] > 0 and player.iron - price_fusee_shild[1] > 0:
-            player.gold -= price_fusee_shild[0]
-            player.iron -= price_fusee_shild[1]
-            player.fusee.shild += 1
-            price_fusee_shild[0] *= 5
-            price_fusee_shild[1] *= 5
-
 def buy_planete(event, player, planete):
     x, y = pygame.mouse.get_pos()
     if event.type == pygame.MOUSEBUTTONDOWN :
@@ -173,18 +153,36 @@ def buy_planete(event, player, planete):
                     players[player].gold -= all_planete[planete].valeur
                     all_planete[planete].colonise = player + 1
 
+def upgrade_fusee(event, x, y, player, turn):
+    if event.type == pygame.MOUSEBUTTONDOWN:
+       if x > infoObject.current_w * 550 / 1600 and x < infoObject.current_w  * 670 / 1600 and y > infoObject.current_h * 865 / 1000 and y < infoObject.current_h * 985 / 1000 and player[turn].gold - player[turn].price_fusee_atk[0] > 0 and player[turn].iron - player[turn].price_fusee_atk[1] > 0:
+            player[turn].gold -= player[turn].price_fusee_atk[0]
+            player[turn].iron -= player[turn].price_fusee_atk[1]
+            player[turn].fusee.atk += 1
+            player[turn].price_fusee_atk[0] *= 2
+            player[turn].price_fusee_atk[1] *= 2
+
 def print_info_on_popup(planete):
     screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
     p = classes.info
     p.name = info_font.render(planete.name, True, (255, 255, 255))
-    p.gold = planete.gold
-    p.iron = planete.iron
-    p.oil = planete.oil
+    p.gold = info_font.render(str(planete.gold), True, (255, 255, 255))
+    p.iron = info_font.render(str(planete.iron), True, (255, 255, 255))
+    p.oil = info_font.render(str(planete.oil), True, (255, 255, 255))
+    price = info_font.render(str(planete.valeur), True, (255, 255, 255))
     name = font.render("Name :", True, (0, 0, 0))
     desc = font.render("Description :", True, (0, 0, 0))
 
     screen.blit(p.name, (infoObject.current_w * 530 / 1920, infoObject.current_h * 150 / 1080))
-        
+    screen.blit(gold, (infoObject.current_w * 530 / 1920, infoObject.current_h * 550 / 1080))
+    screen.blit(p.gold, (infoObject.current_w * 630 / 1920, infoObject.current_h * 555 / 1080))
+    screen.blit(iron, (infoObject.current_w * 530 / 1920, infoObject.current_h * 650 / 1080))
+    screen.blit(p.iron, (infoObject.current_w * 630 / 1920, infoObject.current_h * 655 / 1080))
+    screen.blit(oil, (infoObject.current_w * 530 / 1920, infoObject.current_h * 750 / 1080))
+    screen.blit(p.oil, (infoObject.current_w * 630 / 1920, infoObject.current_h * 755 / 1080))
+    screen.blit(price, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 691 / 1080))
+    
+    
 
 #---------------------------/function----------------------------------------------#
 list = menu.display_menu(screen, menu_launch)
@@ -203,17 +201,17 @@ while launched:
     screen.blit(overlay[turn], (0, 0))
 
     print_aire(all_planete, turn)
-    screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
+    screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 861 / 1000))
     create_texture(players[turn], oil, gold, iron, all_planete)
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))
     sec = int(seconds)
-    seconds = font.render(seconds, True, (0,0,0))
-    screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 871 / 1000))
+    seconds = info_font.render(seconds, True, (0,0,0))
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
     if disp_base_info:
         screen.blit(popup, (0, 0))
         print_info_on_popup(all_planete[pop_up_id])
     for event in pygame.event.get():
+        upgrade_fusee(event, x1, y1, players, turn)
         disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
         if disp_base_info:
             buy_planete(event, turn, pop_up_id)
@@ -226,7 +224,6 @@ while launched:
             else:
                 turn = 0
             players[turn] = add_planete_colonise(players, all_planete, turn)
-        bouton_fusee(players[turn], x1, y1)
     if sec <= 0:
         clock_turn = pygame.time.get_ticks()
         if turn != 3:
