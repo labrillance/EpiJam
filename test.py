@@ -181,7 +181,6 @@ def upgrade_fusee(event, x, y, player, turn):
             player[turn].level += 1
 
 def print_info_on_popup(planete):
-    screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
     p = classes.info
     p.name = info_font.render(planete.name, True, (255, 255, 255))
     p.gold = info_font.render(str(planete.gold), True, (255, 255, 255))
@@ -197,6 +196,8 @@ def print_info_on_popup(planete):
         pr = list[planete.colonise - 1]
         prop = font.render(pr, True, color[planete.colonise - 1])
         screen.blit(prop, (infoObject.current_w * 530 / 1920, infoObject.current_h * 210 / 1080))
+    else:
+        screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
     screen.blit(p.name, (infoObject.current_w * 530 / 1920, infoObject.current_h * 150 / 1080))
     screen.blit(gold, (infoObject.current_w * 530 / 1920, infoObject.current_h * 550 / 1080))
     screen.blit(p.gold, (infoObject.current_w * 630 / 1920, infoObject.current_h * 555 / 1080))
