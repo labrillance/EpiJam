@@ -37,6 +37,7 @@ button_buy = pygame.image.load("textures/buy.png")
 
 font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
 info_font = pygame.font.Font("./fonts/Moonhouse-yE5M.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
+name_font = pygame.font.Font("./fonts/CasanovaScotia-Xm0K.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
 #---------------------------init variable and GLOBAL-------------------------------#
 
 global launched
@@ -83,7 +84,7 @@ def init_players(list):
         
         players.append(classes.player())
         players[i].name = list[i]
-        players[i].name = font.render(players[i].name, True, (0,0,0))
+        players[i].name = name_font.render(players[i].name, True, (0,0,0))
         players[i].gold = 0
         players[i].oil = 0
         players[i].iron = 0
@@ -201,7 +202,7 @@ while launched:
     screen.blit(overlay[turn], (0, 0))
 
     print_aire(all_planete, turn)
-    screen.blit(players[turn].name, (infoObject.current_w * 20 / 1600, infoObject.current_h * 861 / 1000))
+    screen.blit(players[turn].name, (infoObject.current_w * 850 / 1920, infoObject.current_h * 15 / 1000))
     create_texture(players[turn], oil, gold, iron, all_planete)
     seconds = str(int(((20 - (pygame.time.get_ticks() - clock_turn) / 1000))))
     sec = int(seconds)
