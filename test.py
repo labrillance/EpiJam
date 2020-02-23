@@ -47,7 +47,7 @@ menu_launch = True
 turn = 0
 print_inf = 0
 color = [(33, 129, 213), (243, 47, 47), (72, 213, 33), (219, 0, 255)]
-send_fusee = 0
+send_fusee = 1
 
 #---------------------------PYGAME.DISPLAY-----------------------------------------#
 
@@ -176,5 +176,5 @@ while launched:
             turn = 0
         players[turn] = add_planete_colonise(players, all_planete, turn)
     if send_fusee == 1:
-        send_fusee = sendfusee()
+        send_fusee = fusee.sendfusee()
     pygame.display.flip()
