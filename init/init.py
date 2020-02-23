@@ -11,6 +11,7 @@ class player:
         self.price_fusee_atk = []
         self.price_fusee_atk.append(10)
         self.price_fusee_atk.append(50)
+        self.level = 1
 
 class planete:
     def __init__(self):

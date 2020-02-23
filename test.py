@@ -127,9 +127,11 @@ def create_texture(pl, oil, gold, iron, all_planete):
     cost_atk_fusee_gold = font.render(str(pl.price_fusee_atk[0]), True, (255, 255, 255))
     cost_atk_fusee_iron = font.render(str(pl.price_fusee_atk[1]), True, (255, 255, 255))
     price_text = font.render("Price", True, (255, 255, 255))
+    nb_level_rocket = font.render(str(pl.level), True, (255, 255, 255))
     nb_gold_text = font.render(str(pl.gold), True, (255, 255, 255))
     nb_oil_text = font.render(str(pl.oil), True, (255, 255, 255))
     nb_iron_text = font.render(str(pl.iron), True, (255, 255, 255))
+    screen.blit(nb_level_rocket, (round(infoObject.current_w * 605 / 1600), round(infoObject.current_h * 850 / 1000)))
     screen.blit(price_text, (round(infoObject.current_w * 680 / 1600), round(infoObject.current_h * 860 / 1000)))
     screen.blit(gold_little, (round(infoObject.current_w * 680 / 1600), round(infoObject.current_h * 900 / 1000)))
     screen.blit(cost_atk_fusee_gold, (round(infoObject.current_w * 730 / 1600), round(infoObject.current_h * 900 / 1000)))
@@ -141,7 +143,7 @@ def create_texture(pl, oil, gold, iron, all_planete):
     screen.blit(nb_iron_text, (round(infoObject.current_w * 270 / 1600), round(infoObject.current_h * 920 / 1000)))
     screen.blit(oil, (round(infoObject.current_w * 360 / 1600), round(infoObject.current_h * 900 / 1000)))
     screen.blit(nb_oil_text, (round(infoObject.current_w * 440 / 1600), round(infoObject.current_h * 920 / 1000)))
-    screen.blit(btnatk, (round(infoObject.current_w * 550 / 1600), round(infoObject.current_h * 865 / 1000)))
+    screen.blit(btnatk, (round(infoObject.current_w * 550 / 1600), round(infoObject.current_h * 875 / 1000)))
 
 def print_aire(all, id):
     for i in range(len(all)):
@@ -167,12 +169,13 @@ def buy_planete(event, player, planete):
 
 def upgrade_fusee(event, x, y, player, turn):
     if event.type == pygame.MOUSEBUTTONDOWN:
-       if x > infoObject.current_w * 550 / 1600 and x < infoObject.current_w  * 670 / 1600 and y > infoObject.current_h * 865 / 1000 and y < infoObject.current_h * 985 / 1000 and player[turn].gold - player[turn].price_fusee_atk[0] > 0 and player[turn].iron - player[turn].price_fusee_atk[1] > 0:
+       if x > infoObject.current_w * 550 / 1600 and x < infoObject.current_w  * 670 / 1600 and y > infoObject.current_h * 875 / 1000 and y < infoObject.current_h * 995 / 1000 and player[turn].gold - player[turn].price_fusee_atk[0] >= 0 and player[turn].iron - player[turn].price_fusee_atk[1] >= 0:
             player[turn].gold -= player[turn].price_fusee_atk[0]
             player[turn].iron -= player[turn].price_fusee_atk[1]
             player[turn].fusee.atk += 1
             player[turn].price_fusee_atk[0] *= 2
             player[turn].price_fusee_atk[1] *= 2
+            player[turn].level += 1
 
 def print_info_on_popup(planete):
     screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
