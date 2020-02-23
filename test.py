@@ -177,14 +177,23 @@ def print_info_on_popup(planete):
     screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
     p = classes.info
     p.name = info_font.render(planete.name, True, (255, 255, 255))
-    p.gold = planete.gold
-    p.iron = planete.iron
-    p.oil = planete.oil
+    p.gold = info_font.render(str(planete.gold), True, (255, 255, 255))
+    p.iron = info_font.render(str(planete.iron), True, (255, 255, 255))
+    p.oil = info_font.render(str(planete.oil), True, (255, 255, 255))
+    price = info_font.render(str(planete.valeur), True, (255, 255, 255))
     name = font.render("Name :", True, (0, 0, 0))
     desc = font.render("Description :", True, (0, 0, 0))
 
     screen.blit(p.name, (infoObject.current_w * 530 / 1920, infoObject.current_h * 150 / 1080))
-        
+    screen.blit(gold, (infoObject.current_w * 530 / 1920, infoObject.current_h * 550 / 1080))
+    screen.blit(p.gold, (infoObject.current_w * 630 / 1920, infoObject.current_h * 555 / 1080))
+    screen.blit(iron, (infoObject.current_w * 530 / 1920, infoObject.current_h * 650 / 1080))
+    screen.blit(p.iron, (infoObject.current_w * 630 / 1920, infoObject.current_h * 655 / 1080))
+    screen.blit(oil, (infoObject.current_w * 530 / 1920, infoObject.current_h * 750 / 1080))
+    screen.blit(p.oil, (infoObject.current_w * 630 / 1920, infoObject.current_h * 755 / 1080))
+    screen.blit(price, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 691 / 1080))
+    
+    
 
 #---------------------------/function----------------------------------------------#
 list = menu.display_menu(screen, menu_launch)
