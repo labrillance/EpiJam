@@ -117,7 +117,7 @@ def print_aire(all, id):
 
 def add_planete_colonise(player, all_planete, turn):
     for i in range (0, 35):
-        if all_planete[i].colonise == turn:
+        if all_planete[i].colonise == turn + 1:
             players[turn].gold += all_planete[i].gold
             players[turn].oil += all_planete[i].oil
             players[turn].iron += all_planete[i].iron
@@ -133,7 +133,7 @@ clock_turn = pygame.time.get_ticks()
 seconds = ""
 disp_base_info = False
 
-players[0] =   add_planete_colonise(players, all_planete, 0)
+players[0] = add_planete_colonise(players, all_planete, 0)
 while launched:    
     pygame.display.init()
     x1, y1 = pygame.mouse.get_pos()

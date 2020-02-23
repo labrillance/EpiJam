@@ -51,7 +51,7 @@ def random_planete(taille, posx, posy, long, larg, name):
     result.y = posy
     result.long = long
     result.larg = larg
-    result.colonise = 0;
+    result.colonise = 0
     if taille < 0:
         result.gold = 35
         result.oil = 130
