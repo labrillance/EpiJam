@@ -181,7 +181,4 @@ while launched:
         else:
             turn = 0
         players[turn] = add_planete_colonise(players, all_planete, turn)
-    '''if send_fusee == 1:
-        send_fusee = sendfusee()'''
-    pygame.mixer.music.play(5)
     pygame.display.flip()
