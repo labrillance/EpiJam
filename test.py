@@ -6,6 +6,7 @@ import widget
 import planete
 import init.init as classes
 import math
+import fusee
 
 pygame.init()
 
@@ -46,6 +47,8 @@ menu_launch = True
 turn = 0
 print_inf = 0
 color = [(33, 129, 213), (243, 47, 47), (72, 213, 33), (219, 0, 255)]
+send_fusee = 0
+
 #---------------------------PYGAME.DISPLAY-----------------------------------------#
 
 pygame.display.set_icon(icon)
@@ -172,4 +175,6 @@ while launched:
         else:
             turn = 0
         players[turn] = add_planete_colonise(players, all_planete, turn)
+    if send_fusee == 1:
+        send_fusee = sendfusee()
     pygame.display.flip()
