@@ -1,0 +1,40 @@
+formule millieux : coord (x + (long / 2), y + (hauteur / 2)
+formule rayon : long / 2
+
+1 :             coord (179,67)   ; long = 32  hauteur = 32
+2 :             coord (215,184)  ; long = 33  hauteur = 33
+3 :             coord (321,201)  ; long = 34  hauteur = 32
+4 :             coord (246,617)  ; long = 33  hauteur = 33
+5 :             coord (158,675)  ; long = 33  hauteur = 33
+6 :             coord (161,789)  ; long = 33  hauteur = 33
+7 :             coord (739,222)  ; long = 31  hauteur = 32
+8 :             coord (574,342)  ; long = 31  hauteur = 33
+9 :             coord (646,576)  ; long = 34  hauteur = 31
+10 :            coord (1020,346) ; long = 33  hauteur = 31
+11 :            coord (990,600)  ; long = 31  hauteur = 33
+12 :            coord (1337,28)  ; long = 31  hauteur = 34  
+13 :            coord (1330,146) ; long = 31  hauteur = 34  
+14 :            coord (1232,197) ; long = 31  hauteur = 34
+15 :            coord (1248,596) ; long = 33  hauteur = 33
+16 :            coord (1333,647) ; long = 33  hauteur = 33
+17 :            coord (1340,773) ; long = 33  hauteur = 33
+
+terre1 :        coord (271,33)   ; long = 96  hauteur = 92 
+terre2 :        coord (257,730)  ; long = 92  hauteur = 93
+terre3 :        coord (1186,27)  ; long = 96  hauteur = 94
+terre4 :        coord (1187,718) ; long = 90  hauteur = 94
+
+Gisiuhiri :     coord (413,201)  ; long = 68  hauteur = 65
+Agora :         coord (66,368)   ; long = 141 hauteur = 143
+Nion :          coord (334,390)  ; long = 66  hauteur = 67
+Bromia :        coord (445,579)  ; long = 64  hauteur = 64
+Namides :       coord (857,178)  ; long = 65  hauteur = 64
+Cetania :       coord (999,108)  ; long = 61  hauteur = 61
+Team JUL :      coord (1395,361) ; long = 148 hauteur = 146
+Treaclite :     coord (1115,497) ; long = 64  hauteur = 63
+Cezuno :        coord (1263,339) ; long = 65  hauteur = 63
+Sailia :        coord (950, 771) ; long = 62  hauteur = 62
+R2D2 :          coord (773,658)  ; long = 64  hauteur = 62
+BB8 :           coord (579,732)  ; long = 64  hauteur = 64
+Lodoth :        coord (647,83)   ; long = 63  hauteur = 65
+Mudrehiri :     coord (701,393)  ; long = 184 hauteur = 181
