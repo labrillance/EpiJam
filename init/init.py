@@ -6,6 +6,7 @@ class player:
         self.oil = 0
         self.iron = 0
         self.bases = bases()
+        self.fusee = fusee()
         self.own = []
 
 class planete:
@@ -32,7 +33,7 @@ class bases:
 class fusee:
     def __init__(self):
         self.status = 0
-        self.vitesse = 0
-        self.power = 0
+        self.shild = 0
+        self.atk = 0
         self.posx = 0
         self.posy = 0
