@@ -5,6 +5,20 @@ from random import randrange
 import math
 #---------------------------------------------------------
 
+def init_fusée():
+    fusee = []
+
+    fusee[0] 
+    fusee[1]
+    fusee[2]
+    fusee[3]
+
+def getdistance(xplanete1, yplanete1, xplanete2, yplanete2):
+    xdist = xplanete1 - xplanete2
+    ydist = yplanete1 - yplanete2
+    xdist = math.sqrt(math.pow(xdist, 2))
+    ydist = math.sqrt(math.pow(ydist, 2))
+
 def endfusee():
     #if coordonnées == planete2 -> return 0
     sale = 0
@@ -19,10 +33,10 @@ def send_fusée(fusee, xplanete1, yplanete1, xplanete2, yplanete2):
             fusee = 0
         else:
             mdr = 0
-            getangle(xplanete1, yplanete1, xplanete2, yplanete2)
+            angle = getangle(xplanete1, yplanete1, xplanete2, yplanete2)
             #recup la rotation en fonction de la diff entre les 2 planetes
             #rotate le sprite
-            #convertir les pixels entre 2 planete en distance
+            distancepixel = getdistance(xplanete1, yplanete1, xplanete2, yplanete2)
             #convertir la distance en coordonnées
             #drwlafusée
             
