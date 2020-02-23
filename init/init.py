@@ -12,6 +12,7 @@ class player:
         self.price_fusee_atk.append(10)
         self.price_fusee_atk.append(50)
         self.level = 1
+        self.position = 0
 
 class planete:
     def __init__(self):
@@ -51,3 +52,4 @@ class info:
         self.iron = 0
         self.oil = 0
         self.buy = 0
+        self.dist = 0
