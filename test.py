@@ -122,9 +122,9 @@ def info_display_on_click(event, disp_base_info, x1, y1, pop_up_id):
     return disp_base_info, pop_up_id
 
 def create_texture(pl, oil, gold, iron, all_planete):
-    nb_gold_text = font.render(str(pl.gold), True, (0, 128, 0))
-    nb_oil_text = font.render(str(pl.oil), True, (0, 128, 0))
-    nb_iron_text = font.render(str(pl.iron), True, (0, 128, 0))
+    nb_gold_text = font.render(str(pl.gold), True, (255, 255, 255))
+    nb_oil_text = font.render(str(pl.oil), True, (255, 255, 255))
+    nb_iron_text = font.render(str(pl.iron), True, (255, 255, 255))
     screen.blit(gold, (round(infoObject.current_w * 20 / 1600), round(infoObject.current_h * 900 / 1000)))
     screen.blit(nb_gold_text, (round(infoObject.current_w * 100 / 1600), round(infoObject.current_h * 920 / 1000)))
     screen.blit(iron, (round(infoObject.current_w * 190 / 1600), round(infoObject.current_h * 900 / 1000)))
@@ -215,5 +215,5 @@ while launched:
             turn += 1
         else:
             turn = 0
-        players[turn] = add_planete_colonise(players, all_planete, turn, x1, y1)
+        players[turn] = add_planete_colonise(players, all_planete, turn)
     pygame.display.flip()
