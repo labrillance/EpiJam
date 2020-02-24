@@ -102,6 +102,7 @@ def init_players(list):
         players[i].bases.prop = list[i]
         players[i].bases.posx = infoObject.current_w * x[i] / 1600
         players[i].bases.posy = infoObject.current_h * y[i] / 1000
+        players[i].status = 20 + i
         i += 1
     return players
 
