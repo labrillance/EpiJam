@@ -76,7 +76,7 @@ gold_little = pygame.transform.scale(gold, (round(infoObject.current_w * 35 / 16
 iron_little = pygame.transform.scale(iron, (round(infoObject.current_w * 35 / 1600), round(infoObject.current_h * 35 / 1000)))
 oil_little = pygame.transform.scale(oil, (round(infoObject.current_w * 35 / 1600), round(infoObject.current_h * 35 / 1000)))
 fusee = pygame.transform.scale(fusee, (round(infoObject.current_w * 180 / 1600), round(infoObject.current_h * 90 / 1000)))
-btnatk = pygame.transform.scale(btnatk, (round(infoObject.current_w * 110 / 1600), round(infoObject.current_h * 110 / 1000)))
+btnatk = pygame.transform.scale(btnatk, (round(infoObject.current_w * 120 / 1600), round(infoObject.current_h * 120 / 1000)))
 btncolo = pygame.transform.scale(btncolo, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
 popup = pygame.transform.scale(popup, (infoObject.current_w, infoObject.current_h))
 button_buy = pygame.transform.scale(button_buy, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
@@ -102,7 +102,6 @@ def init_players(list):
         players[i].bases.prop = list[i]
         players[i].bases.posx = infoObject.current_w * x[i] / 1600
         players[i].bases.posy = infoObject.current_h * y[i] / 1000
-        players[i].position = 20 + i
         i += 1
     return players
 
@@ -140,7 +139,7 @@ def create_texture(pl, oil, gold, iron, all_planete):
     nb_gold_text = font.render(str(pl.gold), True, (255, 255, 255))
     nb_oil_text = font.render(str(pl.oil), True, (255, 255, 255))
     nb_iron_text = font.render(str(pl.iron), True, (255, 255, 255))
-    screen.blit(nb_level_rocket, (round(infoObject.current_w * 605 / 1600), round(infoObject.current_h * 853 / 1000)))
+    screen.blit(nb_level_rocket, (round(infoObject.current_w * 605 / 1600), round(infoObject.current_h * 850 / 1000)))
     screen.blit(price_text, (round(infoObject.current_w * 680 / 1600), round(infoObject.current_h * 860 / 1000)))
     screen.blit(gold_little, (round(infoObject.current_w * 680 / 1600), round(infoObject.current_h * 900 / 1000)))
     screen.blit(cost_atk_fusee_gold, (round(infoObject.current_w * 730 / 1600), round(infoObject.current_h * 900 / 1000)))
@@ -152,7 +151,7 @@ def create_texture(pl, oil, gold, iron, all_planete):
     screen.blit(nb_iron_text, (round(infoObject.current_w * 270 / 1600), round(infoObject.current_h * 920 / 1000)))
     screen.blit(oil, (round(infoObject.current_w * 360 / 1600), round(infoObject.current_h * 900 / 1000)))
     screen.blit(nb_oil_text, (round(infoObject.current_w * 440 / 1600), round(infoObject.current_h * 920 / 1000)))
-    screen.blit(btnatk, (round(infoObject.current_w * 550 / 1600), round(infoObject.current_h * 885 / 1000)))
+    screen.blit(btnatk, (round(infoObject.current_w * 550 / 1600), round(infoObject.current_h * 875 / 1000)))
 
 def print_aire(all, id):
     for i in range(len(all)):
@@ -169,14 +168,12 @@ def add_planete_colonise(player, all_planete, turn):
 
 def buy_planete(event, player, planete):
     x, y = pygame.mouse.get_pos()
-    dist = get_distance(players[player], planete)
     if event.type == pygame.MOUSEBUTTONDOWN :
         if event.button == 1 and x > infoObject.current_w * 1233 / 1920 and x < infoObject.current_w * (1233 + 192) / 1920 and y > infoObject.current_h * 771 / 1080 and y < infoObject.current_h * (771 + 78) / 1080:
             if all_planete[planete].colonise == 0:
-                if (players[player].gold >= all_planete[planete].valeur and players[player].oil >= dist):
+                if (players[player].gold > all_planete[planete].valeur):
                     players[player].gold -= all_planete[planete].valeur
                     all_planete[planete].colonise = player + 1
-                    players[player].position = planete
 
 def upgrade_planete(event, player, planete):
     x, y = pygame.mouse.get_pos()
@@ -193,14 +190,14 @@ def attack_planete(event, player, planete):
     if event.type == pygame.MOUSEBUTTONDOWN :
         if event.button == 1 and x > infoObject.current_w * 1233 / 1920 and x < infoObject.current_w * (1233 + 192) / 1920 and y > infoObject.current_h * 771 / 1080 and y < infoObject.current_h * (771 + 78) / 1080:
             if all_planete[planete].colonise > 0 and player != all_planete[planete].colonise - 1:
-                if players[player].gold > 200 + all_planete[planete].valeur and players[player].iron > 2000 and player != all_planete[planete].colonise - 1 and  all_planete[planete].defenselvl <= players[player].level:
-                    players[player].gold -= 200 + all_planete[planete].valeur
+                if players[player].gold > 300 + all_planete[planete].valeur and players[player].iron > 2000 and player != all_planete[planete].colonise - 1 and  all_planete[planete].defenselvl <= players[player].level:
+                    players[player].gold -= 300 + all_planete[planete].valeur
                     players[player].iron -= 2000
                     all_planete[planete].colonise = player + 1
 
 def upgrade_fusee(event, x, y, player, turn):
     if event.type == pygame.MOUSEBUTTONDOWN:
-       if x > infoObject.current_w * 550 / 1600 and x < infoObject.current_w  * 670 / 1600 and y > infoObject.current_h * 885 / 1000 and y < infoObject.current_h * 995 / 1000 and player[turn].gold - player[turn].price_fusee_atk[0] >= 0 and player[turn].iron - player[turn].price_fusee_atk[1] >= 0:
+       if x > infoObject.current_w * 550 / 1600 and x < infoObject.current_w  * 670 / 1600 and y > infoObject.current_h * 875 / 1000 and y < infoObject.current_h * 995 / 1000 and player[turn].gold - player[turn].price_fusee_atk[0] >= 0 and player[turn].iron - player[turn].price_fusee_atk[1] >= 0:
             player[turn].gold -= player[turn].price_fusee_atk[0]
             player[turn].iron -= player[turn].price_fusee_atk[1]
             player[turn].fusee.atk += 1
@@ -208,16 +205,8 @@ def upgrade_fusee(event, x, y, player, turn):
             player[turn].price_fusee_atk[1] *= 2
             player[turn].level += 1
 
-def get_distance(player, planete):
-    xdist = (all_planete[player.position].x - all_planete[planete].x) * infoObject.current_w / 1600
-    ydist = (all_planete[player.position].y - all_planete[planete].y) * infoObject.current_h / 1080
-    return round(math.sqrt(math.pow(xdist, 2) + math.pow(ydist, 2)))
-
-    #     dist = get_distance(players[player], planete)
-    #     screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
-def print_info_on_popup(planete, player):
+def print_info_on_popup(planete):
     p = classes.info
-    #p.dist = info_font.render(str(dist), True, (255, 255, 255))
     p.name = info_font.render(planete.name, True, (255, 255, 255))
     p.gold = info_font.render(str(planete.gold), True, (255, 255, 255))
     p.iron = info_font.render(str(planete.iron), True, (255, 255, 255))
@@ -241,7 +230,6 @@ def print_info_on_popup(planete, player):
         screen.blit(prop, (infoObject.current_w * 530 / 1920, infoObject.current_h * 210 / 1080))
     else:
         screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
-        screen.blit(gold, (infoObject.current_w * 1150 / 1920, infoObject.current_h * 675 / 1080))
         screen.blit(price, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 691 / 1080))
     screen.blit(p.name, (infoObject.current_w * 530 / 1920, infoObject.current_h * 150 / 1080))
     screen.blit(gold, (infoObject.current_w * 530 / 1920, infoObject.current_h * 550 / 1080))
@@ -250,8 +238,6 @@ def print_info_on_popup(planete, player):
     screen.blit(p.iron, (infoObject.current_w * 630 / 1920, infoObject.current_h * 655 / 1080))
     screen.blit(oil, (infoObject.current_w * 530 / 1920, infoObject.current_h * 750 / 1080))
     screen.blit(p.oil, (infoObject.current_w * 630 / 1920, infoObject.current_h * 755 / 1080))
-    # screen.blit(p.dist, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 675 / 1080))
-    screen.blit(price, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 691 / 1080))
     screen.blit(level, (infoObject.current_w * 1000 / 1920, infoObject.current_h * 150 / 1080))
     screen.blit(p.level, (infoObject.current_w * 1200 / 1920, infoObject.current_h * 150 / 1080))
     
@@ -283,7 +269,7 @@ while launched:
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
     if disp_base_info:
         screen.blit(popup, (0, 0))
-        print_info_on_popup(all_planete[pop_up_id], players[turn])
+        print_info_on_popup(all_planete[pop_up_id])
     for event in pygame.event.get():
         upgrade_fusee(event, x1, y1, players, turn)
         disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
