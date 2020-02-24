@@ -76,7 +76,7 @@ gold_little = pygame.transform.scale(gold, (round(infoObject.current_w * 35 / 16
 iron_little = pygame.transform.scale(iron, (round(infoObject.current_w * 35 / 1600), round(infoObject.current_h * 35 / 1000)))
 oil_little = pygame.transform.scale(oil, (round(infoObject.current_w * 35 / 1600), round(infoObject.current_h * 35 / 1000)))
 fusee = pygame.transform.scale(fusee, (round(infoObject.current_w * 180 / 1600), round(infoObject.current_h * 90 / 1000)))
-btnatk = pygame.transform.scale(btnatk, (round(infoObject.current_w * 120 / 1600), round(infoObject.current_h * 120 / 1000)))
+btnatk = pygame.transform.scale(btnatk, (round(infoObject.current_w * 110 / 1600), round(infoObject.current_h * 110 / 1000)))
 btncolo = pygame.transform.scale(btncolo, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
 popup = pygame.transform.scale(popup, (infoObject.current_w, infoObject.current_h))
 button_buy = pygame.transform.scale(button_buy, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
@@ -139,7 +139,7 @@ def create_texture(pl, oil, gold, iron, all_planete):
     nb_gold_text = font.render(str(pl.gold), True, (255, 255, 255))
     nb_oil_text = font.render(str(pl.oil), True, (255, 255, 255))
     nb_iron_text = font.render(str(pl.iron), True, (255, 255, 255))
-    screen.blit(nb_level_rocket, (round(infoObject.current_w * 605 / 1600), round(infoObject.current_h * 850 / 1000)))
+    screen.blit(nb_level_rocket, (round(infoObject.current_w * 605 / 1600), round(infoObject.current_h * 853 / 1000)))
     screen.blit(price_text, (round(infoObject.current_w * 680 / 1600), round(infoObject.current_h * 860 / 1000)))
     screen.blit(gold_little, (round(infoObject.current_w * 680 / 1600), round(infoObject.current_h * 900 / 1000)))
     screen.blit(cost_atk_fusee_gold, (round(infoObject.current_w * 730 / 1600), round(infoObject.current_h * 900 / 1000)))
@@ -151,7 +151,7 @@ def create_texture(pl, oil, gold, iron, all_planete):
     screen.blit(nb_iron_text, (round(infoObject.current_w * 270 / 1600), round(infoObject.current_h * 920 / 1000)))
     screen.blit(oil, (round(infoObject.current_w * 360 / 1600), round(infoObject.current_h * 900 / 1000)))
     screen.blit(nb_oil_text, (round(infoObject.current_w * 440 / 1600), round(infoObject.current_h * 920 / 1000)))
-    screen.blit(btnatk, (round(infoObject.current_w * 550 / 1600), round(infoObject.current_h * 875 / 1000)))
+    screen.blit(btnatk, (round(infoObject.current_w * 550 / 1600), round(infoObject.current_h * 885 / 1000)))
 
 def print_aire(all, id):
     for i in range(len(all)):
@@ -187,7 +187,7 @@ def upgrade_planete(event, player, planete):
 
 def upgrade_fusee(event, x, y, player, turn):
     if event.type == pygame.MOUSEBUTTONDOWN:
-       if x > infoObject.current_w * 550 / 1600 and x < infoObject.current_w  * 670 / 1600 and y > infoObject.current_h * 875 / 1000 and y < infoObject.current_h * 995 / 1000 and player[turn].gold - player[turn].price_fusee_atk[0] >= 0 and player[turn].iron - player[turn].price_fusee_atk[1] >= 0:
+       if x > infoObject.current_w * 550 / 1600 and x < infoObject.current_w  * 670 / 1600 and y > infoObject.current_h * 885 / 1000 and y < infoObject.current_h * 995 / 1000 and player[turn].gold - player[turn].price_fusee_atk[0] >= 0 and player[turn].iron - player[turn].price_fusee_atk[1] >= 0:
             player[turn].gold -= player[turn].price_fusee_atk[0]
             player[turn].iron -= player[turn].price_fusee_atk[1]
             player[turn].fusee.atk += 1
@@ -217,6 +217,7 @@ def print_info_on_popup(planete):
         screen.blit(prop, (infoObject.current_w * 530 / 1920, infoObject.current_h * 210 / 1080))
     else:
         screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
+        screen.blit(gold, (infoObject.current_w * 1150 / 1920, infoObject.current_h * 675 / 1080))
         screen.blit(price, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 691 / 1080))
     screen.blit(p.name, (infoObject.current_w * 530 / 1920, infoObject.current_h * 150 / 1080))
     screen.blit(gold, (infoObject.current_w * 530 / 1920, infoObject.current_h * 550 / 1080))
