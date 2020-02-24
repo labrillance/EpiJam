@@ -38,6 +38,7 @@ btncolo = pygame.image.load("textures/btncolo.png")
 button_buy = pygame.image.load("textures/buy.png")
 button_attack = pygame.image.load("textures/attack.png")
 overlay_com = pygame.image.load("./textures/overlay.png")
+button_upgrade = pygame.image.load("textures/upgrade.png")
 
 #---------------------------FONT---------------------------------------------------#
 
@@ -81,6 +82,7 @@ popup = pygame.transform.scale(popup, (infoObject.current_w, infoObject.current_
 button_buy = pygame.transform.scale(button_buy, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
 button_attack = pygame.transform.scale(button_attack, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
 overlay_com = pygame.transform.scale(overlay_com, (infoObject.current_w, infoObject.current_h))
+button_upgrade = pygame.transform.scale(button_upgrade, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
 
 #---------------------------Function-----------------------------------------------#
 
@@ -173,6 +175,16 @@ def buy_planete(event, player, planete):
                     players[player].gold -= all_planete[planete].valeur
                     all_planete[planete].colonise = player + 1
 
+def upgrade_planete(event, player, planete):
+    x, y = pygame.mouse.get_pos()
+    if event.type == pygame.MOUSEBUTTONDOWN :
+        if event.button == 1 and x > infoObject.current_w * 1233 / 1920 and x < infoObject.current_w * (1233 + 192) / 1920 and y > infoObject.current_h * 771 / 1080 and y < infoObject.current_h * (771 + 78) / 1080:
+            if all_planete[planete].colonise > 0:
+                if players[player].gold > 100 and players[player].iron > 2000 and player == all_planete[planete].colonise -1 :
+                    players[player].gold -= 100
+                    players[player].iron -= 2000
+                    all_planete[planete].defenselvl += 1
+
 def upgrade_fusee(event, x, y, player, turn):
     if event.type == pygame.MOUSEBUTTONDOWN:
        if x > infoObject.current_w * 550 / 1600 and x < infoObject.current_w  * 670 / 1600 and y > infoObject.current_h * 875 / 1000 and y < infoObject.current_h * 995 / 1000 and player[turn].gold - player[turn].price_fusee_atk[0] >= 0 and player[turn].iron - player[turn].price_fusee_atk[1] >= 0:
@@ -198,6 +210,8 @@ def print_info_on_popup(planete):
     if planete.colonise > 0:
         if planete.colonise -1 != turn:
             screen.blit(button_attack, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
+        else:
+            screen.blit(button_upgrade, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))    
         pr = list[planete.colonise - 1]
         prop = font.render(pr, True, color[planete.colonise - 1])
         screen.blit(prop, (infoObject.current_w * 530 / 1920, infoObject.current_h * 210 / 1080))
@@ -248,6 +262,7 @@ while launched:
         disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
         if disp_base_info:
             buy_planete(event, turn, pop_up_id)
+            upgrade_planete(event, turn, pop_up_id)
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
             launched = False
         if (event.type == KEYDOWN and event.key == K_RETURN):
