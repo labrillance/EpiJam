@@ -36,7 +36,10 @@ btndef = pygame.image.load("textures/btndef+.png")
 btnvit = pygame.image.load("textures/btnvit+.png")
 btncolo = pygame.image.load("textures/btncolo.png")
 button_buy = pygame.image.load("textures/buy.png")
+button_attack = pygame.image.load("textures/attack.png")
 overlay_com = pygame.image.load("./textures/overlay.png")
+button_upgrade = pygame.image.load("textures/upgrade.png")
+
 #---------------------------FONT---------------------------------------------------#
 
 font = pygame.font.Font("./fonts/Andromeda-eR2n.ttf", round((infoObject.current_w * infoObject.current_h * 45 / (1920 * 1080))))
@@ -77,7 +80,9 @@ btnatk = pygame.transform.scale(btnatk, (round(infoObject.current_w * 120 / 1600
 btncolo = pygame.transform.scale(btncolo, (round(infoObject.current_w * 200 / 1600), round(infoObject.current_h * 120 / 1000)))
 popup = pygame.transform.scale(popup, (infoObject.current_w, infoObject.current_h))
 button_buy = pygame.transform.scale(button_buy, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
+button_attack = pygame.transform.scale(button_attack, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
 overlay_com = pygame.transform.scale(overlay_com, (infoObject.current_w, infoObject.current_h))
+button_upgrade = pygame.transform.scale(button_upgrade, (round(infoObject.current_w * 192 / 1920), round(infoObject.current_h * 78 / 1090)))
 
 #---------------------------Function-----------------------------------------------#
 
@@ -173,6 +178,16 @@ def buy_planete(event, player, planete):
                     all_planete[planete].colonise = player + 1
                     players[player].position = planete
 
+def upgrade_planete(event, player, planete):
+    x, y = pygame.mouse.get_pos()
+    if event.type == pygame.MOUSEBUTTONDOWN :
+        if event.button == 1 and x > infoObject.current_w * 1233 / 1920 and x < infoObject.current_w * (1233 + 192) / 1920 and y > infoObject.current_h * 771 / 1080 and y < infoObject.current_h * (771 + 78) / 1080:
+            if all_planete[planete].colonise > 0:
+                if players[player].gold > 100 and players[player].iron > 2000 and player == all_planete[planete].colonise -1 :
+                    players[player].gold -= 100
+                    players[player].iron -= 2000
+                    all_planete[planete].defenselvl += 1
+
 def upgrade_fusee(event, x, y, player, turn):
     if event.type == pygame.MOUSEBUTTONDOWN:
        if x > infoObject.current_w * 550 / 1600 and x < infoObject.current_w  * 670 / 1600 and y > infoObject.current_h * 875 / 1000 and y < infoObject.current_h * 995 / 1000 and player[turn].gold - player[turn].price_fusee_atk[0] >= 0 and player[turn].iron - player[turn].price_fusee_atk[1] >= 0:
@@ -188,19 +203,32 @@ def get_distance(player, planete):
     ydist = (all_planete[player.position].y - all_planete[planete].y) * infoObject.current_h / 1080
     return round(math.sqrt(math.pow(xdist, 2) + math.pow(ydist, 2)))
 
-def print_info_on_popup(planete, player):
-    dist = get_distance(players[player], planete)
-    screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
+    #     dist = get_distance(players[player], planete)
+    #     screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
+def print_info_on_popup(planete):
     p = classes.info
-    p.dist = info_font.render(str(dist), True, (255, 255, 255))
+    #p.dist = info_font.render(str(dist), True, (255, 255, 255))
     p.name = info_font.render(planete.name, True, (255, 255, 255))
     p.gold = info_font.render(str(planete.gold), True, (255, 255, 255))
     p.iron = info_font.render(str(planete.iron), True, (255, 255, 255))
     p.oil = info_font.render(str(planete.oil), True, (255, 255, 255))
     price = info_font.render(str(planete.valeur), True, (255, 255, 255))
+    p.level = info_font.render(str(planete.defenselvl), True, (192, 192, 192))
+    level = info_font.render("Level :", True, (192, 192, 192))
     name = font.render("Name :", True, (0, 0, 0))
     desc = font.render("Description :", True, (0, 0, 0))
 
+    if planete.colonise > 0:
+        if planete.colonise -1 != turn:
+            screen.blit(button_attack, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
+        else:
+            screen.blit(button_upgrade, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))    
+        pr = list[planete.colonise - 1]
+        prop = font.render(pr, True, color[planete.colonise - 1])
+        screen.blit(prop, (infoObject.current_w * 530 / 1920, infoObject.current_h * 210 / 1080))
+    else:
+        screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
+        screen.blit(price, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 691 / 1080))
     screen.blit(p.name, (infoObject.current_w * 530 / 1920, infoObject.current_h * 150 / 1080))
     screen.blit(gold, (infoObject.current_w * 530 / 1920, infoObject.current_h * 550 / 1080))
     screen.blit(p.gold, (infoObject.current_w * 630 / 1920, infoObject.current_h * 555 / 1080))
@@ -210,6 +238,9 @@ def print_info_on_popup(planete, player):
     screen.blit(p.oil, (infoObject.current_w * 630 / 1920, infoObject.current_h * 755 / 1080))
     screen.blit(p.dist, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 675 / 1080))
     screen.blit(price, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 691 / 1080))
+    screen.blit(level, (infoObject.current_w * 1000 / 1920, infoObject.current_h * 150 / 1080))
+    screen.blit(p.level, (infoObject.current_w * 1200 / 1920, infoObject.current_h * 150 / 1080))
+    
     
     
 
@@ -244,9 +275,11 @@ while launched:
         disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
         if disp_base_info:
             buy_planete(event, turn, pop_up_id)
+            upgrade_planete(event, turn, pop_up_id)
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
             launched = False
         if (event.type == KEYDOWN and event.key == K_RETURN):
+            disp_base_info = False
             clock_turn = pygame.time.get_ticks()
             if turn != 3:
                 turn += 1
@@ -255,6 +288,7 @@ while launched:
             players[turn] = add_planete_colonise(players, all_planete, turn)
     if sec <= 0:
         clock_turn = pygame.time.get_ticks()
+        disp_base_info = False
         if turn != 3:
             turn += 1
         else:

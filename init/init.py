@@ -53,3 +53,4 @@ class info:
         self.oil = 0
         self.buy = 0
         self.dist = 0
+        self.level = 0
