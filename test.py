@@ -185,6 +185,16 @@ def upgrade_planete(event, player, planete):
                     players[player].iron -= 2000
                     all_planete[planete].defenselvl += 1
 
+def attack_planete(event, player, planete):
+    x, y = pygame.mouse.get_pos()
+    if event.type == pygame.MOUSEBUTTONDOWN :
+        if event.button == 1 and x > infoObject.current_w * 1233 / 1920 and x < infoObject.current_w * (1233 + 192) / 1920 and y > infoObject.current_h * 771 / 1080 and y < infoObject.current_h * (771 + 78) / 1080:
+            if all_planete[planete].colonise > 0 and player != all_planete[planete].colonise - 1:
+                if players[player].gold > 200 + all_planete[planete].valeur and players[player].iron > 2000 and player != all_planete[planete].colonise - 1 and  all_planete[planete].defenselvl <= players[player].level:
+                    players[player].gold -= 200 + all_planete[planete].valeur
+                    players[player].iron -= 2000
+                    all_planete[planete].colonise = player + 1
+
 def upgrade_fusee(event, x, y, player, turn):
     if event.type == pygame.MOUSEBUTTONDOWN:
        if x > infoObject.current_w * 550 / 1600 and x < infoObject.current_w  * 670 / 1600 and y > infoObject.current_h * 875 / 1000 and y < infoObject.current_h * 995 / 1000 and player[turn].gold - player[turn].price_fusee_atk[0] >= 0 and player[turn].iron - player[turn].price_fusee_atk[1] >= 0:
@@ -206,9 +216,12 @@ def print_info_on_popup(planete):
     level = info_font.render("Level :", True, (192, 192, 192))
     name = font.render("Name :", True, (0, 0, 0))
     desc = font.render("Description :", True, (0, 0, 0))
-
+    lvlneed = info_font.render("Level needed :", True, (192, 192, 192))
+    priceattack = info_font.render(str(planete.defenselvl), True, (192, 192, 192) )
     if planete.colonise > 0:
         if planete.colonise -1 != turn:
+            screen.blit(lvlneed, (infoObject.current_w * 1143 / 1920, infoObject.current_h * 641/ 1080))
+            screen.blit(priceattack, (infoObject.current_w * 1283 / 1920, infoObject.current_h * 701/ 1080))
             screen.blit(button_attack, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
         else:
             screen.blit(button_upgrade, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))    
@@ -263,6 +276,7 @@ while launched:
         if disp_base_info:
             buy_planete(event, turn, pop_up_id)
             upgrade_planete(event, turn, pop_up_id)
+            attack_planete(event, turn, pop_up_id)
         if event.type == pygame.QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
             launched = False
         if (event.type == KEYDOWN and event.key == K_RETURN):
