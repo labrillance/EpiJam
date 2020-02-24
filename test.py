@@ -169,12 +169,15 @@ def add_planete_colonise(player, all_planete, turn):
 
 def buy_planete(event, player, planete):
     x, y = pygame.mouse.get_pos()
+    dist = get_distance(player, all_planete[planete])
     if event.type == pygame.MOUSEBUTTONDOWN :
         if event.button == 1 and x > infoObject.current_w * 1233 / 1920 and x < infoObject.current_w * (1233 + 192) / 1920 and y > infoObject.current_h * 771 / 1080 and y < infoObject.current_h * (771 + 78) / 1080:
             if all_planete[planete].colonise == 0:
-                if (players[player].gold > all_planete[planete].valeur):
+                if (players[player].gold >= all_planete[planete].valeur and players[player].oil >= dist):
                     players[player].gold -= all_planete[planete].valeur
+                    players[player].oil -= dist
                     all_planete[planete].colonise = player + 1
+                    players[player].status = planete
 
 def upgrade_planete(event, player, planete):
     x, y = pygame.mouse.get_pos()
@@ -196,8 +199,15 @@ def upgrade_fusee(event, x, y, player, turn):
             player[turn].price_fusee_atk[1] *= 2
             player[turn].level += 1
 
-def print_info_on_popup(planete):
+def get_distance(turn, planete):
+    xdist = (all_planete[players[turn].status].x - planete.x) * infoObject.current_w / 1600
+    ydist = (all_planete[players[turn].status].y - planete.y) * infoObject.current_h / 1080
+    return round(math.sqrt(math.pow(xdist, 2) + math.pow(ydist, 2)))
+
+def print_info_on_popup(planete, turn):
     p = classes.info
+    dist = get_distance(turn, planete)
+    p.dist = info_font.render(str(dist), True, (255, 255, 255))
     p.name = info_font.render(planete.name, True, (255, 255, 255))
     p.gold = info_font.render(str(planete.gold), True, (255, 255, 255))
     p.iron = info_font.render(str(planete.iron), True, (255, 255, 255))
@@ -218,8 +228,10 @@ def print_info_on_popup(planete):
         screen.blit(prop, (infoObject.current_w * 530 / 1920, infoObject.current_h * 210 / 1080))
     else:
         screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
-        screen.blit(gold, (infoObject.current_w * 1150 / 1920, infoObject.current_h * 675 / 1080))
+        screen.blit(gold_little, (infoObject.current_w * 1180 / 1920, infoObject.current_h * 690 / 1080))
         screen.blit(price, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 691 / 1080))
+        screen.blit(oil_little, (infoObject.current_w * 1180 / 1920, infoObject.current_h * 650 / 1080))
+        screen.blit(p.dist, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 660 / 1080))
     screen.blit(p.name, (infoObject.current_w * 530 / 1920, infoObject.current_h * 150 / 1080))
     screen.blit(gold, (infoObject.current_w * 530 / 1920, infoObject.current_h * 550 / 1080))
     screen.blit(p.gold, (infoObject.current_w * 630 / 1920, infoObject.current_h * 555 / 1080))
@@ -227,6 +239,7 @@ def print_info_on_popup(planete):
     screen.blit(p.iron, (infoObject.current_w * 630 / 1920, infoObject.current_h * 655 / 1080))
     screen.blit(oil, (infoObject.current_w * 530 / 1920, infoObject.current_h * 750 / 1080))
     screen.blit(p.oil, (infoObject.current_w * 630 / 1920, infoObject.current_h * 755 / 1080))
+    screen.blit(price, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 691 / 1080))
     screen.blit(level, (infoObject.current_w * 1000 / 1920, infoObject.current_h * 150 / 1080))
     screen.blit(p.level, (infoObject.current_w * 1200 / 1920, infoObject.current_h * 150 / 1080))
     
@@ -258,7 +271,7 @@ while launched:
     screen.blit(seconds, (infoObject.current_w * 1520 / 1600, infoObject.current_h * 8 / 1000))
     if disp_base_info:
         screen.blit(popup, (0, 0))
-        print_info_on_popup(all_planete[pop_up_id])
+        print_info_on_popup(all_planete[pop_up_id], turn)
     for event in pygame.event.get():
         upgrade_fusee(event, x1, y1, players, turn)
         disp_base_info, pop_up_id = info_display_on_click(event, disp_base_info, x1, y1, pop_up_id )
