@@ -205,7 +205,7 @@ def get_distance(player, planete):
 
     #     dist = get_distance(players[player], planete)
     #     screen.blit(button_buy, (infoObject.current_w * 1233 / 1920, infoObject.current_h * 771/ 1080))
-def print_info_on_popup(planete):
+def print_info_on_popup(planete, player):
     p = classes.info
     #p.dist = info_font.render(str(dist), True, (255, 255, 255))
     p.name = info_font.render(planete.name, True, (255, 255, 255))
@@ -237,7 +237,7 @@ def print_info_on_popup(planete):
     screen.blit(p.iron, (infoObject.current_w * 630 / 1920, infoObject.current_h * 655 / 1080))
     screen.blit(oil, (infoObject.current_w * 530 / 1920, infoObject.current_h * 750 / 1080))
     screen.blit(p.oil, (infoObject.current_w * 630 / 1920, infoObject.current_h * 755 / 1080))
-    screen.blit(p.dist, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 675 / 1080))
+    # screen.blit(p.dist, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 675 / 1080))
     screen.blit(price, (infoObject.current_w * 1243 / 1920, infoObject.current_h * 691 / 1080))
     screen.blit(level, (infoObject.current_w * 1000 / 1920, infoObject.current_h * 150 / 1080))
     screen.blit(p.level, (infoObject.current_w * 1200 / 1920, infoObject.current_h * 150 / 1080))
